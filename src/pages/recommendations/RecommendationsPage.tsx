@@ -149,7 +149,7 @@ export default function RecommendationsPage() {
         ) : recommendations.length > 0 ? (
           <div className="recs-page__list">
             <button className="recs-page__refresh-btn" onClick={handleGenerate} disabled={generating}>
-              {generating ? 'Engine Running...' : 'Get more recommendations'}
+              {generating ? 'Finding your next read...' : 'Find your next read'}
             </button>
             
             {recommendations.map((rec) => (
@@ -201,7 +201,7 @@ export default function RecommendationsPage() {
                 <h2>No recommendations right now</h2>
                 <p>We've cleared your stack. Want us to run the engine again?</p>
                 <button className="recs-page__generate-btn" onClick={handleGenerate}>
-                  Run Recommendation Engine
+                  Find your next read
                 </button>
               </div>
             )}
@@ -214,7 +214,8 @@ export default function RecommendationsPage() {
           onClose={() => setSelectedRecForShelf(null)}
           onBookAdded={handleBookAddedFromRec}
           initialBook={{
-            book_id: selectedRecForShelf.book.book_id,
+            id: selectedRecForShelf.book.id,
+            book_id: selectedRecForShelf.book.id,
             title: selectedRecForShelf.book.title,
             author: selectedRecForShelf.book.author,
             cover_url: selectedRecForShelf.book.cover_url,

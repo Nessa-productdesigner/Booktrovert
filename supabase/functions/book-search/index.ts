@@ -74,7 +74,7 @@ Deno.serve(async (req) => {
 
       let coverUrl = null;
       if (info.imageLinks) {
-        const bestImage = info.imageLinks.medium || info.imageLinks.small || info.imageLinks.thumbnail || info.imageLinks.smallThumbnail;
+        const bestImage = info.imageLinks.extraLarge || info.imageLinks.large || info.imageLinks.medium || info.imageLinks.small || info.imageLinks.thumbnail || info.imageLinks.smallThumbnail;
         if (bestImage) {
           coverUrl = bestImage.replace(/^http:\/\//i, 'https://');
         }

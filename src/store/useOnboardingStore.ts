@@ -1,6 +1,7 @@
 import { create } from 'zustand';
 
 export interface BooktrovertBook {
+  id?: string;
   book_id: string;
   title: string;
   author: string;

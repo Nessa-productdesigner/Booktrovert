@@ -13,7 +13,7 @@ export const EMPTY_TAGS: ContextTags = {
 };
 
 export async function ensureBookExists(book: BooktrovertBook): Promise<void> {
-  const actualId = book.book_id || (book as any).id;
+  const actualId = book.id || book.book_id;
   
   const { data: existing } = await supabase
     .from('books')

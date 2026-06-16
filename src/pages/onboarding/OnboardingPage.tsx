@@ -68,7 +68,14 @@ export default function OnboardingPage() {
 
       // Update local state
       setProfile({ ...profile, onboarding_complete: true });
-      navigate('/shelf', { replace: true });
+
+      // Generate recommendations via DeepSeek
+      const { error: recError } = await supabase.functions.invoke('generate-recommendations', {
+        method: 'POST'
+      });
+      if (recError) throw new Error(recError.message || 'Failed to generate recommendations');
+
+      navigate('/recommendations', { replace: true });
 
     } catch (err) {
       const error = err as Error;
@@ -108,6 +115,7 @@ export default function OnboardingPage() {
         ) : currentCount < REQUIRED_BOOKS ? (
           <div className="onboarding-page__search-section">
             <h2 className="onboarding-page__title">What have you read recently?</h2>
+            <p className="onboarding-page__micro-copy">Select three books to get custom recommendations just for you.</p>
             <BookSearch onSelectBook={handleSelectBook} hideSubtitle />
           </div>
         ) : (
@@ -140,7 +148,7 @@ export default function OnboardingPage() {
               onClick={handleFinalize}
               disabled={isSaving}
             >
-              {isSaving ? 'Initializing Engine...' : 'Initialize Recommendation Engine'}
+              {isSaving ? 'Finding your next read...' : 'Find your next read'}
             </button>
           </div>
         )}

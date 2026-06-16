@@ -56,6 +56,13 @@
   font-size: var(--typography-body-4-fontsize);
 }
 
+.onboarding-page__micro-copy {
+  font-family: var(--typography-body-4-font-family);
+  font-size: 14px;
+  color: var(--figma-ui3-text-secondary);
+  margin: 0 0 var(--uix-design-system-spacing-sp-4);
+}
+
 .onboarding-page__complete {
   display: flex;
   flex-direction: column;
@@ -72,7 +79,7 @@
 }
 
 .onboarding-page__search-section .onboarding-page__title {
-  margin-bottom: 24px;
+  margin-bottom: 16px;
 }
 
 .onboarding-page__subtitle {
