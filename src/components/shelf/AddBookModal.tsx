@@ -20,7 +20,7 @@ export default function AddBookModal({ onClose, onBookAdded, initialBook, initia
   const { user } = useAuthStore();
   const [step, setStep] = useState<1 | 2 | 3>(
     initialBook && (initialShelf === 'read' || initialShelf === 'did_not_finish') ? 3 :
-    initialBook ? 2 : 1
+      initialBook ? 2 : 1
   );
   const [selectedBook, setSelectedBook] = useState<BooktrovertBook | null>(initialBook || null);
   const [selectedShelf, setSelectedShelf] = useState<ShelfType | null>(initialShelf || null);
@@ -35,7 +35,7 @@ export default function AddBookModal({ onClose, onBookAdded, initialBook, initia
 
   const handleShelfSelect = async (shelf: ShelfType) => {
     setSelectedShelf(shelf);
-    
+
     if (shelf === 'read' || shelf === 'did_not_finish') {
       setStep(3);
     } else {
@@ -50,7 +50,7 @@ export default function AddBookModal({ onClose, onBookAdded, initialBook, initia
 
   const saveBook = async (shelf: ShelfType, bookTags: ContextTags, rating?: number) => {
     if (!user || !selectedBook) return;
-    
+
     try {
       setIsSaving(true);
       setError(null);
@@ -72,7 +72,7 @@ export default function AddBookModal({ onClose, onBookAdded, initialBook, initia
           .from('userbooks')
           .update({ shelf: shelf, context_tags: bookTags, rating: rating })
           .eq('userbook_id', existingUserBook.userbook_id);
-          
+
         if (updateError) throw updateError;
       } else {
         const { error: insertError } = await supabase.from('userbooks').insert({
@@ -82,7 +82,7 @@ export default function AddBookModal({ onClose, onBookAdded, initialBook, initia
           context_tags: bookTags,
           rating: rating
         });
-        
+
         if (insertError) throw insertError;
       }
 
@@ -101,7 +101,7 @@ export default function AddBookModal({ onClose, onBookAdded, initialBook, initia
     <div className="add-book-modal__overlay">
       <div className="add-book-modal__container">
         <button className="add-book-modal__close" onClick={onClose} aria-label="Close">✕</button>
-        
+
         {error && <div className="add-book-modal__error">{error}</div>}
 
         {step === 1 && (
@@ -151,9 +151,9 @@ export default function AddBookModal({ onClose, onBookAdded, initialBook, initia
         )}
 
         {showDetailModal && selectedBook && (
-          <BookDetailModal 
-            book={selectedBook} 
-            onClose={() => setShowDetailModal(false)} 
+          <BookDetailModal
+            book={selectedBook}
+            onClose={() => setShowDetailModal(false)}
             hideShelfSelect={true}
             onRequestTagging={(book, shelf) => {
               setShowDetailModal(false);

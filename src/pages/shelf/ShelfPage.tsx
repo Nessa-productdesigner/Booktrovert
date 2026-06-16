@@ -4,22 +4,13 @@ import { useAuthStore } from '../../store/useAuthStore';
 import { useAsyncData } from '../../lib/useAsyncData';
 import { getHighResCoverUrl } from '../../lib/utils';
 import type { ShelfType } from '../../lib/db';
+import type { BooktrovertBook } from '../../store/useOnboardingStore';
 import AddBookModal from '../../components/shelf/AddBookModal';
 import BookDetailModal from '../../components/shelf/BookDetailModal';
 import StarRating from '../../components/ui/StarRating';
 import ShareModal from '../../components/share/ShareModal';
 import './ShelfPage.css';
 
-interface BookDetails {
-  id: string;
-  book_id?: string;
-  title: string;
-  author: string;
-  cover_url: string | null;
-  synopsis: string | null;
-  genre_tags: string[];
-  source: 'api' | 'manual';
-}
 
 interface UserBook {
   userbook_id: string;
@@ -27,7 +18,7 @@ interface UserBook {
   context_tags: Record<string, string[]>;
   rating: number | null;
   added_at: string;
-  book: BookDetails;
+  book: BooktrovertBook;
 }
 
 const TABS: { id: ShelfType; label: string }[] = [
@@ -42,11 +33,11 @@ export default function ShelfPage() {
   const { user } = useAuthStore();
   const [activeTab, setActiveTab] = useState<ShelfType>('read');
   const [showAddModal, setShowAddModal] = useState(false);
-  const [addModalInitialBook, setAddModalInitialBook] = useState<BookDetails | null>(null);
+  const [addModalInitialBook, setAddModalInitialBook] = useState<BooktrovertBook | null>(null);
   const [addModalInitialShelf, setAddModalInitialShelf] = useState<ShelfType | null>(null);
   const [sharingBookId, setSharingBookId] = useState<string | null>(null);
   const [sharingShelf, setSharingShelf] = useState<ShelfType | null>(null);
-  const [selectedBookForDetail, setSelectedBookForDetail] = useState<BookDetails | null>(null);
+  const [selectedBookForDetail, setSelectedBookForDetail] = useState<BooktrovertBook | null>(null);
 
   const fetchBooks = useCallback(async () => {
     if (!user) return [];
@@ -136,7 +127,7 @@ export default function ShelfPage() {
                         onClick={(e) => { 
                           e.preventDefault();
                           e.stopPropagation();
-                          const targetId = (ub.book as any).id || ub.book.book_id;
+                          const targetId = ub.book.book_id;
                           handleShareClick(targetId, ub.shelf); 
                         }}
                         title="Share this book"
