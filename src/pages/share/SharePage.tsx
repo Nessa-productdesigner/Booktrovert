@@ -30,7 +30,7 @@ export default function SharePage() {
             user_id,
             book_id,
             custom_message,
-            book:books!inner(book_id, title, author, cover_url)
+            book:books!inner(id, title, author, cover_url)
           `)
           .eq('token', token)
           .maybeSingle();
@@ -47,14 +47,11 @@ export default function SharePage() {
           return;
         }
 
-        const { data: userBook } = await supabase
-          .from('userbooks')
-          .select('context_tags')
-          .eq('user_id', link.user_id)
-          .eq('book_id', link.book_id)
-          .maybeSingle();
+        // Securely fetch tags via our new RPC function
+        const { data: contextTags, error: tagsError } = await supabase
+          .rpc('get_shared_book_tags', { share_token: token });
 
-        if (!userBook) {
+        if (tagsError || !contextTags) {
           setError('This share is no longer available.');
           return;
         }
@@ -63,7 +60,7 @@ export default function SharePage() {
           title: book.title,
           author: book.author,
           cover_url: book.cover_url,
-          context_tags: (userBook.context_tags || {}) as Record<string, string[]>,
+          context_tags: (contextTags || {}) as Record<string, string[]>,
           custom_message: link.custom_message,
         });
       } catch {
