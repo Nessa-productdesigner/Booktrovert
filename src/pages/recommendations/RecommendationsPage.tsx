@@ -214,8 +214,7 @@ export default function RecommendationsPage() {
           onClose={() => setSelectedRecForShelf(null)}
           onBookAdded={handleBookAddedFromRec}
           initialBook={{
-            id: selectedRecForShelf.book.id,
-            book_id: selectedRecForShelf.book.id,
+            book_id: selectedRecForShelf.book.book_id,
             title: selectedRecForShelf.book.title,
             author: selectedRecForShelf.book.author,
             cover_url: selectedRecForShelf.book.cover_url,

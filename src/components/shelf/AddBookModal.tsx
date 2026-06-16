@@ -155,7 +155,7 @@ export default function AddBookModal({ onClose, onBookAdded, initialBook, initia
             book={selectedBook}
             onClose={() => setShowDetailModal(false)}
             hideShelfSelect={true}
-            onRequestTagging={(book, shelf) => {
+            onRequestTagging={(_book, shelf) => {
               setShowDetailModal(false);
               handleShelfSelect(shelf);
             }}
