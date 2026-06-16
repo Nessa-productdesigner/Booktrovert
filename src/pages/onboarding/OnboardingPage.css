@@ -1,0 +1,174 @@
+.onboarding-page {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: var(--uix-design-system-spacing-sp-10) var(--uix-design-system-spacing-sp-4);
+  background-color: var(--figma-ui3-bg);
+  color: var(--figma-ui3-text);
+}
+
+.onboarding-page__container {
+  width: 100%;
+  max-width: 600px;
+  display: flex;
+  flex-direction: column;
+  gap: var(--uix-design-system-spacing-sp-6);
+}
+
+.onboarding-page__progress {
+  display: flex;
+  flex-direction: column;
+  gap: var(--uix-design-system-spacing-sp-2);
+}
+
+.onboarding-page__progress-text {
+  font-family: var(--typography-body-4-font-family);
+  font-size: var(--typography-body-4-fontsize);
+  color: var(--figma-ui3-text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  text-align: center;
+}
+
+.onboarding-page__progress-bar {
+  width: 100%;
+  height: 6px;
+  background-color: var(--figma-ui3-bg-secondary);
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.onboarding-page__progress-fill {
+  height: 100%;
+  background-color: var(--figma-ui3-bg-brand);
+  transition: width 0.4s ease;
+}
+
+.onboarding-page__error {
+  padding: var(--uix-design-system-spacing-sp-3);
+  background-color: var(--figma-ui3-bg-danger-tertiary);
+  color: var(--figma-ui3-text-danger);
+  border: 1px solid var(--figma-ui3-border-danger-strong);
+  border-radius: var(--uix-design-system-radius-rd-2);
+  text-align: center;
+  font-family: var(--typography-body-4-font-family);
+  font-size: var(--typography-body-4-fontsize);
+}
+
+.onboarding-page__complete {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--uix-design-system-spacing-sp-4);
+  text-align: center;
+}
+
+.onboarding-page__title {
+  margin: 0;
+  font-family: var(--typography-heading-4-font-family);
+  font-size: var(--typography-heading-4-fontsize);
+  color: var(--figma-ui3-text);
+}
+
+.onboarding-page__search-section .onboarding-page__title {
+  margin-bottom: 24px;
+}
+
+.onboarding-page__subtitle {
+  margin: 0;
+  font-family: var(--typography-body-3-font-family);
+  font-size: var(--typography-body-3-fontsize);
+  color: var(--figma-ui3-text-tertiary);
+}
+
+.onboarding-page__summary-list {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: var(--uix-design-system-spacing-sp-2);
+  margin-top: var(--uix-design-system-spacing-sp-4);
+}
+
+.onboarding-page__summary-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--uix-design-system-spacing-sp-3);
+  background-color: var(--figma-ui3-bg-secondary);
+  border-radius: var(--uix-design-system-radius-rd-2);
+  min-height: 44px;
+}
+
+.onboarding-page__summary-info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+}
+
+.onboarding-page__summary-info strong {
+  font-family: var(--typography-title-6-font-family);
+  color: var(--figma-ui3-text);
+}
+
+.onboarding-page__summary-info span {
+  font-family: var(--typography-caption-font-family);
+  color: var(--figma-ui3-text-tertiary);
+}
+
+.onboarding-page__remove-btn {
+  background: transparent;
+  border: none;
+  color: var(--figma-ui3-text-danger);
+  cursor: pointer;
+  font-size: var(--typography-caption-fontsize);
+  transition: opacity 0.2s;
+  min-height: 44px;
+  min-width: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.onboarding-page__remove-btn:hover {
+  opacity: 0.8;
+}
+
+.onboarding-page__finalize-btn {
+  margin-top: var(--uix-design-system-spacing-sp-6);
+  width: 100%;
+  padding: var(--uix-design-system-spacing-sp-4);
+  background-color: var(--figma-ui3-bg-brand);
+  color: var(--figma-ui3-text-onbrand);
+  border: none;
+  border-radius: var(--uix-design-system-radius-rd-2);
+  font-family: var(--typography-title-6-font-family);
+  font-size: var(--typography-title-6-fontsize);
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  min-height: 44px;
+}
+
+.onboarding-page__finalize-btn:hover:not(:disabled) {
+  background-color: var(--figma-ui3-bg-brand-hover);
+}
+
+.onboarding-page__finalize-btn:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+/* =========================================
+   MOBILE RESPONSIVE
+   ========================================= */
+
+@media (max-width: 768px) {
+  .onboarding-page {
+    padding: var(--uix-design-system-spacing-sp-6) var(--uix-design-system-spacing-sp-4);
+  }
+}
+
+
+

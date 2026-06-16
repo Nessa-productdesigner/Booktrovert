@@ -1,0 +1,398 @@
+.shelf-page {
+  padding: var(--uix-design-system-spacing-sp-8) var(--uix-design-system-spacing-sp-6);
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.shelf-page__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--uix-design-system-spacing-sp-8);
+  gap: var(--uix-design-system-spacing-sp-3);
+}
+
+.shelf-page__title {
+  font-family: var(--typography-heading-3-font-family);
+  font-size: var(--typography-heading-3-fontsize);
+  font-weight: 600;
+  color: var(--figma-ui3-text);
+  margin: 0;
+}
+
+.shelf-page__add-btn {
+  background-color: var(--figma-ui3-bg-brand);
+  color: var(--figma-ui3-text-onbrand);
+  border: none;
+  padding: var(--uix-design-system-spacing-sp-2) var(--uix-design-system-spacing-sp-4);
+  border-radius: var(--uix-design-system-radius-rd-2);
+  font-family: var(--typography-body-3-font-family);
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  min-height: 44px;
+  white-space: nowrap;
+}
+
+.shelf-page__add-btn:hover, .shelf-page__add-btn-empty:hover {
+  background-color: var(--figma-ui3-bg-brand-hover);
+}
+
+/* =========================================
+   SHELF TABS — Horizontally scrollable
+   ========================================= */
+
+.shelf-page__tabs {
+  display: flex;
+  gap: var(--uix-design-system-spacing-sp-5);
+  border-bottom: 1px solid var(--figma-ui3-border);
+  margin-bottom: var(--uix-design-system-spacing-sp-6);
+  overflow-x: auto;
+  padding-bottom: var(--uix-design-system-spacing-sp-1);
+  /* Scroll snap for smooth swiping */
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  /* Hide scrollbar */
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.shelf-page__tabs::-webkit-scrollbar {
+  display: none;
+}
+
+.shelf-page__tab {
+  background: transparent;
+  border: none;
+  padding: var(--uix-design-system-spacing-sp-2) 0;
+  font-family: var(--typography-title-6-font-family);
+  font-size: var(--typography-title-6-fontsize);
+  color: var(--figma-ui3-text-secondary);
+  cursor: pointer;
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: var(--uix-design-system-spacing-sp-2);
+  white-space: nowrap;
+  transition: color 0.2s ease;
+  min-height: 44px;
+  scroll-snap-align: start;
+  flex-shrink: 0;
+}
+
+.shelf-page__tab:hover {
+  color: var(--figma-ui3-text-brand);
+}
+
+.shelf-page__tab--active {
+  color: var(--figma-ui3-text-brand);
+  font-weight: 500;
+}
+
+
+
+.shelf-page__tab-count {
+  background-color: var(--figma-ui3-bg-secondary);
+  color: var(--figma-ui3-text-tertiary);
+  font-size: 11px;
+  padding: 2px 6px;
+  border-radius: 10px;
+}
+
+.shelf-page__tab--active .shelf-page__tab-count {
+  background-color: var(--figma-ui3-bg-brand-tertiary);
+  color: var(--figma-ui3-text-brand);
+}
+
+/* =========================================
+   BOOK CARD GRID — Responsive breakpoints
+   ========================================= */
+
+.shelf-page__grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--uix-design-system-spacing-sp-4);
+}
+
+@media (min-width: 480px) {
+  .shelf-page__grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--uix-design-system-spacing-sp-5);
+  }
+}
+
+@media (min-width: 768px) {
+  .shelf-page__grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--uix-design-system-spacing-sp-6);
+  }
+}
+
+@media (min-width: 1024px) {
+  .shelf-page__grid {
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: var(--uix-design-system-spacing-sp-6);
+  }
+}
+
+.shelf-page__book-card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--uix-design-system-spacing-sp-3);
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.shelf-page__book-card:hover {
+  transform: translateY(-4px);
+}
+
+.shelf-page__book-cover-wrapper {
+  width: 100%;
+  aspect-ratio: 2 / 3;
+  border-radius: var(--uix-design-system-radius-rd-2);
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  background-color: var(--figma-ui3-bg-secondary);
+}
+
+.shelf-page__book-rating {
+  margin-top: 0;
+}
+
+.shelf-page__book-cover {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.shelf-page__book-placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--figma-ui3-text-tertiary);
+  font-size: var(--typography-caption-fontsize);
+}
+
+.shelf-page__book-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.shelf-page__book-title {
+  margin: 0;
+  font-family: var(--typography-title-6-font-family);
+  font-size: 16px;
+  color: var(--figma-ui3-text);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.shelf-page__book-author {
+  margin: 2px 0 0 0;
+  font-family: var(--typography-body-4-font-family);
+  font-size: 14px;
+  color: var(--figma-ui3-text-secondary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.shelf-page__tags-preview {
+  margin-top: var(--uix-design-system-spacing-sp-2);
+}
+
+.shelf-page__tag-pill {
+  display: inline-block;
+  font-size: 10px;
+  background-color: var(--figma-ui3-bg-brand-tertiary);
+  color: var(--figma-ui3-text-brand);
+  padding: 2px 6px;
+  border-radius: var(--uix-design-system-radius-rd-1);
+}
+
+.shelf-page__empty, .shelf-page__loading, .shelf-page__error {
+  text-align: center;
+  padding: var(--uix-design-system-spacing-sp-10) 0;
+  color: var(--figma-ui3-text-tertiary);
+}
+
+.shelf-page__error {
+  color: var(--figma-ui3-text-danger);
+}
+
+.shelf-page__empty p {
+  margin: 0 0 var(--uix-design-system-spacing-sp-4) 0;
+}
+
+.shelf-page__empty-sub {
+  font-size: var(--typography-body-4-fontsize);
+  max-width: 400px;
+  margin: 0 auto var(--uix-design-system-spacing-sp-6) auto !important;
+}
+
+.shelf-page__add-btn-empty {
+  background-color: var(--figma-ui3-bg-brand);
+  color: var(--figma-ui3-text-onbrand);
+  border: none;
+  padding: var(--uix-design-system-spacing-sp-3) var(--uix-design-system-spacing-sp-6);
+  border-radius: var(--uix-design-system-radius-rd-2);
+  font-family: var(--typography-body-3-font-family);
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  min-height: 44px;
+}
+
+.shelf-page__book-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: auto;
+  padding-top: var(--uix-design-system-spacing-sp-2);
+}
+
+.shelf-page__share-btn {
+  background: transparent;
+  border: none;
+  padding: var(--uix-design-system-spacing-sp-1);
+  color: var(--figma-ui3-text-secondary);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.shelf-page__share-btn:hover {
+  color: var(--figma-ui3-text-brand);
+}
+
+.shelf-page__share-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 200;
+  padding: var(--uix-design-system-spacing-sp-4);
+}
+
+.shelf-page__share-dialog {
+  background: var(--figma-ui3-bg);
+  border-radius: var(--radius-rd-3);
+  padding: var(--uix-design-system-spacing-sp-6);
+  max-width: 400px;
+  width: 100%;
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.2);
+}
+
+.shelf-page__share-title {
+  font-family: var(--font-heading);
+  font-size: var(--typography-heading-3-fontsize);
+  color: var(--figma-ui3-text);
+  margin: 0 0 var(--uix-design-system-spacing-sp-2);
+}
+
+.shelf-page__share-text {
+  font-family: var(--font-body);
+  font-size: var(--typography-body-2-fontsize);
+  color: var(--figma-ui3-text-secondary);
+  margin: 0 0 var(--uix-design-system-spacing-sp-5);
+}
+
+.shelf-page__share-field {
+  display: flex;
+  gap: var(--uix-design-system-spacing-sp-2);
+  margin-bottom: var(--uix-design-system-spacing-sp-4);
+}
+
+.shelf-page__share-input {
+  flex: 1;
+  padding: var(--uix-design-system-spacing-sp-2) var(--uix-design-system-spacing-sp-3);
+  border: 1px solid var(--figma-ui3-border);
+  border-radius: var(--radius-rd-2);
+  font-family: var(--font-body);
+  font-size: var(--typography-body-2-fontsize);
+  color: var(--figma-ui3-text);
+  background: var(--figma-ui3-bg-secondary);
+  min-height: 44px;
+}
+
+.shelf-page__share-copy-btn {
+  padding: var(--uix-design-system-spacing-sp-2) var(--uix-design-system-spacing-sp-4);
+  border: none;
+  border-radius: var(--radius-rd-2);
+  background: var(--figma-ui3-bg-brand);
+  color: var(--figma-ui3-text-onbrand);
+  font-family: var(--font-body);
+  font-size: var(--typography-body-2-fontsize);
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+  min-height: 44px;
+}
+
+.shelf-page__share-copy-btn:hover {
+  background: var(--figma-ui3-bg-brand-hover);
+}
+
+.shelf-page__share-close-btn {
+  width: 100%;
+  padding: var(--uix-design-system-spacing-sp-2);
+  border: 1px solid var(--figma-ui3-border);
+  border-radius: var(--radius-rd-2);
+  background: transparent;
+  color: var(--figma-ui3-text);
+  font-family: var(--font-body);
+  font-size: var(--typography-body-2-fontsize);
+  cursor: pointer;
+  min-height: 44px;
+}
+
+.shelf-page__share-close-btn:hover {
+  background: var(--figma-ui3-bg-hover);
+}
+
+/* =========================================
+   MOBILE RESPONSIVE
+   ========================================= */
+
+@media (max-width: 768px) {
+  .shelf-page {
+    padding: var(--uix-design-system-spacing-sp-4);
+  }
+
+  .shelf-page__header {
+    margin-bottom: var(--uix-design-system-spacing-sp-5);
+  }
+
+  .shelf-page__tabs {
+    gap: var(--uix-design-system-spacing-sp-3);
+    margin-bottom: var(--uix-design-system-spacing-sp-4);
+    /* Scroll padding so first/last tabs aren't flush against edge */
+    scroll-padding-left: var(--uix-design-system-spacing-sp-2);
+  }
+
+  .shelf-page__tab {
+  }
+
+  .shelf-page__book-title {
+  }
+
+  .shelf-page__book-author {
+  }
+
+  .shelf-page__share-field {
+    flex-direction: column;
+  }
+}
+
+

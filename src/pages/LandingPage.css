@@ -1,0 +1,325 @@
+/* =========================================
+   LANDING PAGE — BOOKTROVERT
+   Premium, mobile-first, 100vh hero
+   ========================================= */
+
+.landing {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  overflow: hidden;
+  background:
+    radial-gradient(ellipse 80% 50% at 50% -20%, rgba(12, 140, 233, 0.08), transparent),
+    radial-gradient(ellipse 60% 40% at 80% 100%, rgba(138, 56, 245, 0.06), transparent),
+    var(--figma-ui3-bg);
+}
+
+.landing h1 { font-size: 52px !important; }
+.landing h2 { font-size: 42px !important; }
+.landing h3 { font-size: 32px !important; }
+
+/* --- Floating decorative shapes --- */
+.landing__shapes {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.landing__shape {
+  position: absolute;
+  font-size: 2rem;
+  opacity: 0.15;
+  animation: float 6s ease-in-out infinite;
+}
+
+.landing__shape--1 {
+  top: 12%;
+  left: 8%;
+  animation-delay: 0s;
+  font-size: 2.5rem;
+}
+
+.landing__shape--2 {
+  top: 20%;
+  right: 12%;
+  animation-delay: 1s;
+  font-size: 1.8rem;
+}
+
+.landing__shape--3 {
+  bottom: 30%;
+  left: 15%;
+  animation-delay: 2s;
+  font-size: 1.5rem;
+}
+
+.landing__shape--4 {
+  bottom: 15%;
+  right: 10%;
+  animation-delay: 3s;
+  font-size: 2.2rem;
+}
+
+.landing__shape--5 {
+  top: 50%;
+  left: 50%;
+  animation-delay: 4s;
+  font-size: 1.6rem;
+}
+
+.landing__shape--6 {
+  top: 30%;
+  right: 5%;
+  animation-delay: 2.5s;
+  font-size: 1.7rem;
+}
+
+.landing__shape--7 {
+  bottom: 45%;
+  left: 5%;
+  animation-delay: 1.5s;
+  font-size: 2.1rem;
+}
+
+.landing__shape--8 {
+  top: 15%;
+  left: 30%;
+  animation-delay: 3.5s;
+  font-size: 1.4rem;
+}
+
+.landing__shape--9 {
+  bottom: 20%;
+  right: 25%;
+  animation-delay: 0.5s;
+  font-size: 2.4rem;
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-20px) rotate(5deg);
+  }
+}
+
+/* --- Layout Components --- */
+.landing__content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  max-width: 800px;
+  width: 100%;
+  padding: var(--uix-design-system-spacing-sp-6) var(--uix-design-system-spacing-sp-4);
+}
+
+/* --- Badge --- */
+.landing__badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--uix-design-system-spacing-sp-2);
+  padding: var(--uix-design-system-spacing-sp-2) var(--uix-design-system-spacing-sp-4);
+  border-radius: 100px;
+  background: rgba(12, 140, 233, 0.08);
+  border: 1px solid rgba(12, 140, 233, 0.15);
+  font-family: var(--font-body);
+  font-size: var(--typography-body-2-fontsize);
+  font-weight: 500;
+  color: var(--figma-ui3-bg-brand);
+  margin-bottom: var(--uix-design-system-spacing-sp-8);
+  animation: fadeInDown 0.8s ease-out;
+  min-height: 44px;
+}
+
+.landing__badge-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--figma-ui3-bg-brand);
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(1.3); }
+}
+
+/* --- Title --- */
+.landing__title {
+  font-family: var(--font-heading);
+  font-size: clamp(2.5rem, 8vw, var(--typography-heading-1-fontsize));
+  font-weight: 600;
+  line-height: 1.1;
+  color: var(--figma-ui3-text);
+  margin: 0 0 24px;
+  animation: fadeInUp 0.8s ease-out 0.2s both;
+}
+
+.landing__title-accent {
+  background: linear-gradient(135deg, var(--figma-ui3-bg-brand), var(--figma-ui3-bg-component));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* --- Subtitle --- */
+.landing__subtitle {
+  font-family: var(--font-body);
+  font-size: var(--typography-body-1-fontsize);
+  line-height: var(--typography-body-1-lineheight);
+  color: var(--figma-ui3-text-secondary);
+  margin: 0 0 24px;
+  max-width: 480px;
+  animation: fadeInUp 0.8s ease-out 0.4s both;
+}
+
+/* --- CTA Button --- */
+.landing__cta {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--uix-design-system-spacing-sp-2);
+  padding: var(--uix-design-system-spacing-sp-4) var(--uix-design-system-spacing-sp-8);
+  border: none;
+  border-radius: 100px;
+  background: var(--figma-ui3-bg-brand);
+  color: var(--figma-ui3-text-onbrand);
+  font-family: var(--font-body);
+  font-size: var(--typography-body-1-fontsize);
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  min-height: 44px;
+  min-width: 44px;
+  animation: fadeInUp 0.8s ease-out 0.6s both;
+}
+
+.landing__cta:hover {
+  background: var(--figma-ui3-bg-brand-hover);
+  transform: translateY(-2px);
+}
+
+.landing__cta-inner {
+  display: inline-flex;
+  align-items: center;
+}
+
+.landing__cta .landing__cta-arrow {
+  overflow: hidden;
+  max-width: 0;
+  opacity: 0;
+  transition: max-width 0.25s ease, opacity 0.2s ease, margin-left 0.25s ease;
+  margin-left: 0;
+}
+
+.landing__cta:hover .landing__cta-arrow {
+  max-width: 20px;
+  opacity: 1;
+  margin-left: var(--uix-design-system-spacing-sp-2);
+}
+
+.landing__cta:active {
+  background: var(--figma-ui3-bg-brand-pressed);
+  transform: translateY(0);
+}
+
+.landing__cta-arrow {
+  transition: transform 0.2s ease;
+}
+
+.landing__cta:hover .landing__cta-arrow {
+  transform: translateX(4px);
+}
+
+/* --- Sample tags --- */
+.landing__tags {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--uix-design-system-spacing-sp-2);
+  margin-top: var(--uix-design-system-spacing-sp-11);
+  animation: fadeInUp 0.8s ease-out 0.8s both;
+}
+
+.landing__tag {
+  padding: var(--uix-design-system-spacing-sp-1) var(--uix-design-system-spacing-sp-3);
+  border-radius: 100px;
+  background: rgba(12, 140, 233, 0.06);
+  border: 1px solid rgba(12, 140, 233, 0.12);
+  font-family: var(--font-body);
+  font-size: var(--typography-caption-fontsize);
+  font-weight: var(--typography-caption-fontweight);
+  color: var(--figma-ui3-text-secondary);
+  letter-spacing: 0.02em;
+  transition: all 0.2s ease;
+}
+
+.landing__tag:hover {
+  background: rgba(12, 140, 233, 0.12);
+  color: var(--figma-ui3-bg-brand);
+  transform: translateY(-2px);
+}
+
+/* --- Bottom gradient fade --- */
+.landing__fade {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 120px;
+  background: linear-gradient(to top, var(--figma-ui3-bg), transparent);
+  z-index: 0;
+}
+
+/* --- Animations --- */
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* --- Responsive --- */
+@media (max-width: 480px) {
+  .landing__subtitle br {
+    display: none;
+  }
+
+  .landing__shape--5 {
+    display: none;
+  }
+
+  .landing__content {
+    padding: var(--uix-design-system-spacing-sp-4) var(--uix-design-system-spacing-sp-3);
+  }
+
+  .landing__tags {
+    gap: var(--uix-design-system-spacing-sp-1);
+    margin-top: var(--uix-design-system-spacing-sp-8);
+  }
+
+  .landing__tag {
+  }
+}
+
+

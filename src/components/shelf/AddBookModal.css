@@ -1,0 +1,242 @@
+.add-book-modal__overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: var(--uix-design-system-spacing-sp-4);
+  backdrop-filter: blur(4px);
+}
+
+.add-book-modal__container {
+  background-color: var(--figma-ui3-bg);
+  border-radius: var(--uix-design-system-radius-rd-4);
+  width: 100%;
+  max-width: 600px;
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+}
+
+.add-book-modal__close {
+  position: absolute;
+  top: var(--uix-design-system-spacing-sp-4);
+  right: var(--uix-design-system-spacing-sp-4);
+  background: transparent;
+  border: none;
+  font-size: var(--typography-heading-5-fontsize);
+  color: var(--figma-ui3-text-secondary);
+  cursor: pointer;
+  z-index: 10;
+  width: 44px;
+  height: 44px;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: background-color 0.2s ease;
+}
+
+.add-book-modal__close:hover {
+  background-color: var(--figma-ui3-bg-hover);
+  color: var(--figma-ui3-text);
+}
+
+.add-book-modal__step {
+  padding: var(--uix-design-system-spacing-sp-8);
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow-y: auto;
+}
+
+.add-book-modal__step--tagging {
+  padding-bottom: 0; /* Let the action bar handle the padding */
+}
+
+.add-book-modal__title {
+  font-family: var(--typography-heading-4-font-family);
+  font-size: var(--typography-heading-4-fontsize);
+  font-weight: 500;
+  color: var(--figma-ui3-text);
+  margin: 0 0 var(--uix-design-system-spacing-sp-6) 0;
+  padding-right: 40px;
+}
+
+.add-book-modal__subtitle {
+  color: var(--figma-ui3-text-secondary);
+  margin-top: calc(-1 * var(--uix-design-system-spacing-sp-4));
+  margin-bottom: var(--uix-design-system-spacing-sp-6);
+  font-family: var(--typography-body-4-font-family);
+}
+
+.add-book-modal__error {
+  background-color: var(--figma-ui3-bg-danger);
+  color: var(--figma-ui3-text-danger);
+  padding: var(--uix-design-system-spacing-sp-3);
+  text-align: center;
+  font-family: var(--typography-body-4-font-family);
+  border-bottom: 1px solid var(--figma-ui3-border);
+}
+
+.add-book-modal__book-preview {
+  display: flex;
+  gap: var(--uix-design-system-spacing-sp-4);
+  padding: var(--uix-design-system-spacing-sp-4);
+  background-color: var(--figma-ui3-bg-secondary);
+  border-radius: var(--uix-design-system-radius-rd-2);
+  margin-bottom: var(--uix-design-system-spacing-sp-6);
+}
+
+.add-book-modal__book-preview img {
+  width: 60px;
+  height: 90px;
+  object-fit: cover;
+  border-radius: var(--uix-design-system-radius-rd-1);
+}
+
+.add-book-modal__preview-placeholder {
+  width: 60px;
+  height: 90px;
+  background-color: var(--figma-ui3-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+  text-align: center;
+  color: var(--figma-ui3-text-secondary);
+  border-radius: var(--uix-design-system-radius-rd-1);
+}
+
+.add-book-modal__book-preview h3 {
+  margin: 0 0 var(--uix-design-system-spacing-sp-1) 0;
+  font-family: var(--typography-title-6-font-family);
+  color: var(--figma-ui3-text);
+}
+
+.add-book-modal__book-preview p {
+  margin: 0;
+  color: var(--figma-ui3-text-secondary);
+  font-family: var(--typography-body-4-font-family);
+}
+
+.add-book-modal__read-synopsis {
+  display: inline-block;
+  margin-top: var(--uix-design-system-spacing-sp-1);
+  font-size: 12px;
+  color: var(--figma-ui3-text-secondary);
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.add-book-modal__read-synopsis:hover {
+  text-decoration: underline;
+  color: var(--figma-ui3-text);
+}
+
+.add-book-modal__shelves {
+  display: flex;
+  flex-direction: column;
+  gap: var(--uix-design-system-spacing-sp-3);
+}
+
+.add-book-modal__shelves button {
+  background-color: transparent;
+  border: 1px solid var(--figma-ui3-border);
+  padding: var(--uix-design-system-spacing-sp-4);
+  border-radius: var(--uix-design-system-radius-rd-2);
+  color: var(--figma-ui3-text);
+  font-family: var(--typography-title-6-font-family);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-align: left;
+  min-height: 44px;
+}
+
+.add-book-modal__shelves button:hover:not(:disabled) {
+  border-color: var(--figma-ui3-border-brand);
+  background-color: var(--figma-ui3-bg-brand-tertiary);
+  color: var(--figma-ui3-text-brand);
+}
+
+.add-book-modal__shelves button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.add-book-modal__tag-scroll {
+  flex: 1;
+  overflow-y: auto;
+  margin-bottom: var(--uix-design-system-spacing-sp-4);
+  /* Make sure the scrollbar doesn't overlap tags too badly */
+  padding-right: var(--uix-design-system-spacing-sp-2);
+}
+
+.add-book-modal__actions {
+  padding: var(--uix-design-system-spacing-sp-4);
+  background-color: var(--figma-ui3-bg);
+  border-top: 1px solid var(--figma-ui3-border);
+  display: flex;
+  justify-content: flex-end;
+}
+
+.add-book-modal__save-btn {
+  background-color: var(--figma-ui3-bg-brand);
+  color: var(--figma-ui3-text-onbrand);
+  border: none;
+  padding: var(--uix-design-system-spacing-sp-3) var(--uix-design-system-spacing-sp-6);
+  border-radius: var(--uix-design-system-radius-rd-2);
+  font-family: var(--typography-body-3-font-family);
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  min-height: 44px;
+}
+
+.add-book-modal__save-btn:hover:not(:disabled) {
+  background-color: var(--figma-ui3-bg-brand-hover);
+}
+
+.add-book-modal__save-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* =========================================
+   MOBILE RESPONSIVE
+   ========================================= */
+
+@media (max-width: 768px) {
+  .add-book-modal__overlay {
+    padding: 0;
+    align-items: flex-end;
+  }
+
+  .add-book-modal__container {
+    max-height: 95vh;
+    border-radius: var(--uix-design-system-radius-rd-4) var(--uix-design-system-radius-rd-4) 0 0;
+  }
+
+  .add-book-modal__step {
+    padding: var(--uix-design-system-spacing-sp-4);
+  }
+
+  .add-book-modal__actions {
+    padding-bottom: calc(var(--uix-design-system-spacing-sp-4) + env(safe-area-inset-bottom));
+  }
+
+  .add-book-modal__save-btn {
+    width: 100%;
+  }
+}
+
+

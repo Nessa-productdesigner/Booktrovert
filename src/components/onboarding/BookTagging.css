@@ -1,0 +1,218 @@
+.book-tagging {
+  display: flex;
+  flex-direction: column;
+  gap: var(--uix-design-system-spacing-sp-5);
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+  padding-bottom: 50px;
+}
+
+.book-tagging__header {
+  display: flex;
+  flex-direction: column;
+  gap: var(--uix-design-system-spacing-sp-1);
+}
+
+.book-tagging__title-row {
+  display: flex;
+  align-items: center;
+  gap: var(--uix-design-system-spacing-sp-3);
+}
+
+.book-tagging__subtitle {
+  margin: 0;
+  font-family: var(--typography-body-4-font-family);
+  font-size: var(--typography-body-4-fontsize);
+  color: var(--figma-ui3-text-secondary);
+}
+
+.book-tagging__back-btn {
+  background: transparent;
+  border: none;
+  color: var(--figma-ui3-text-tertiary);
+  font-family: var(--typography-body-3-font-family);
+  font-size: var(--typography-body-3-fontsize);
+  cursor: pointer;
+  padding: 0;
+  transition: color 0.2s ease;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+}
+
+.book-tagging__back-btn:hover {
+  color: var(--figma-ui3-text);
+}
+
+.book-tagging__title {
+  margin: 0;
+  font-family: var(--typography-heading-5-font-family);
+  font-size: var(--typography-heading-5-fontsize);
+  font-weight: var(--typography-heading-5-font-weight);
+  color: var(--figma-ui3-text);
+}
+
+.book-tagging__book-info {
+  display: flex;
+  align-items: center;
+  gap: var(--uix-design-system-spacing-sp-4);
+  padding: var(--uix-design-system-spacing-sp-4);
+  background-color: var(--figma-ui3-bg-secondary);
+  border-radius: var(--uix-design-system-radius-rd-2);
+}
+
+.book-tagging__cover, .book-tagging__cover-placeholder {
+  width: 60px;
+  height: 90px;
+  border-radius: var(--uix-design-system-radius-rd-1);
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.book-tagging__cover-placeholder {
+  background-color: var(--figma-ui3-bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  color: var(--figma-ui3-text-tertiary);
+  text-align: center;
+  border: 1px solid var(--figma-ui3-border);
+}
+
+.book-tagging__details h3 {
+  margin: 0;
+  font-family: var(--typography-title-6-font-family);
+  font-size: var(--typography-title-6-fontsize);
+  color: var(--figma-ui3-text);
+}
+
+.book-tagging__details p {
+  margin: var(--uix-design-system-spacing-sp-1) 0 0 0;
+  font-family: var(--typography-body-4-font-family);
+  color: var(--figma-ui3-text-secondary);
+}
+
+.book-tagging__form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--uix-design-system-spacing-sp-6);
+}
+
+.book-tagging__dimension {
+  display: flex;
+  flex-direction: column;
+  gap: var(--uix-design-system-spacing-sp-2);
+}
+
+.book-tagging__dimension-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+.book-tagging__dimension-header h4 {
+  margin: 0;
+  font-family: var(--typography-title-7-font-family);
+  font-size: 17px;
+  font-weight: 500;
+  color: var(--figma-ui3-text);
+}
+
+.book-tagging__required {
+  font-family: var(--typography-caption-font-family);
+  font-size: var(--typography-caption-fontsize);
+  color: var(--figma-ui3-text-danger);
+}
+
+.book-tagging__options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--uix-design-system-spacing-sp-2);
+}
+
+.book-tagging__pill {
+  padding: var(--uix-design-system-spacing-sp-2) var(--uix-design-system-spacing-sp-3);
+  background-color: var(--figma-ui3-bg);
+  color: var(--figma-ui3-text);
+  border: 1px solid var(--figma-ui3-border);
+  border-radius: var(--uix-design-system-radius-rd-4);
+  font-family: var(--typography-body-4-font-family);
+  font-size: var(--typography-body-4-fontsize);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+}
+
+.book-tagging__pill:hover {
+  background-color: var(--figma-ui3-bg-hover);
+  border-color: var(--figma-ui3-border-brand);
+}
+
+.book-tagging__pill--selected {
+  background-color: var(--figma-ui3-bg-brand);
+  color: var(--figma-ui3-text-onbrand);
+  border-color: var(--figma-ui3-border-brand);
+}
+
+.book-tagging__pill--selected:hover {
+  background-color: var(--figma-ui3-bg-brand-hover);
+}
+
+.book-tagging__actions {
+  display: flex;
+  flex-direction: column;
+  gap: var(--uix-design-system-spacing-sp-2);
+  margin-top: var(--uix-design-system-spacing-sp-4);
+}
+
+.book-tagging__save-btn {
+  padding: var(--uix-design-system-spacing-sp-3);
+  background-color: var(--figma-ui3-bg-brand);
+  color: var(--figma-ui3-text-onbrand);
+  border: none;
+  border-radius: var(--uix-design-system-radius-rd-2);
+  font-family: var(--typography-body-3-font-family);
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  min-height: 44px;
+}
+
+.book-tagging__save-btn:disabled {
+  background-color: var(--figma-ui3-bg-secondary);
+  color: var(--figma-ui3-text-disabled);
+  cursor: not-allowed;
+}
+
+.book-tagging__rating-section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--uix-design-system-spacing-sp-2);
+  margin-top: var(--uix-design-system-spacing-sp-2);
+  padding: var(--uix-design-system-spacing-sp-4);
+  background-color: var(--figma-ui3-bg-secondary);
+  border-radius: var(--uix-design-system-radius-rd-2);
+}
+
+.book-tagging__rating-label {
+  margin: 0;
+  font-family: var(--typography-title-7-font-family);
+  font-size: 17px;
+  font-weight: 500;
+  color: var(--figma-ui3-text);
+}
+
+.book-tagging__optional {
+  font-family: var(--typography-caption-font-family);
+  font-size: var(--typography-caption-fontsize);
+  color: var(--figma-ui3-text-tertiary);
+  text-transform: none;
+  font-weight: normal;
+  margin-left: var(--uix-design-system-spacing-sp-1);
+}
+
+

@@ -1,0 +1,289 @@
+@import "tailwindcss";
+
+/* =========================================
+   BOOKTROVERT DESIGN SYSTEM — LIGHT MODE
+   =========================================
+   Source of truth: variables.css (Figma tokens)
+   
+   The Figma export is dark-themed. We override
+   the semantic color variables below for light
+   mode at launch. The original dark-mode tokens
+   remain available via a `.dark` class toggle
+   in the future.
+   ========================================= */
+
+/* --- Import the raw Figma token variables --- */
+@import "../variables.css" layer(base);
+
+/* --- Light Mode Overrides --- */
+@layer base {
+  :root {
+    /* Backgrounds */
+    --figma-ui3-bg: #ffffff;
+    --figma-ui3-bg-hover: #f5f5f5;
+    --figma-ui3-bg-pressed: #ebebeb;
+    --figma-ui3-bg-secondary: #f5f5f5;
+    --figma-ui3-bg-tertiary: #ebebeb;
+    --figma-ui3-bg-inverse: #1a1a1a;
+    --figma-ui3-bg-disabled: #d4d4d4;
+    --figma-ui3-bg-disabled-secondary: #a3a3a3;
+
+    /* Brand Background Overrides (Light Mode) */
+    --figma-ui3-bg-brand: #815aec;
+    --figma-ui3-bg-brand-hover: #5520e7;
+    --figma-ui3-bg-brand-pressed: #4210c4;
+    --figma-ui3-bg-brand-secondary: #ebdcf9;
+    --figma-ui3-bg-brand-tertiary: #f4ecfb;
+    --figma-ui3-bg-selected-strong: #5520e7;
+
+    /* Text */
+    --figma-ui3-text: #1a1a1a;
+    --figma-ui3-text-secondary: #525252;
+    --figma-ui3-text-secondary-hover: #1a1a1a;
+    --figma-ui3-text-tertiary: #737373;
+    --figma-ui3-text-tertiary-hover: #1a1a1a;
+    --figma-ui3-text-hover: #0a0a0a;
+    --figma-ui3-text-disabled: #a3a3a3;
+    --figma-ui3-text-oninverse: #ffffff;
+
+    /* Icons */
+    --figma-ui3-icon: #1a1a1a;
+    --figma-ui3-icon-secondary: #525252;
+    --figma-ui3-icon-secondary-hover: #1a1a1a;
+    --figma-ui3-icon-tertiary: #737373;
+    --figma-ui3-icon-tertiary-hover: #1a1a1a;
+    --figma-ui3-icon-hover: #0a0a0a;
+    --figma-ui3-icon-disabled: #a3a3a3;
+    --figma-ui3-icon-oninverse: #ffffff;
+    --figma-ui3-icon-ondisabled: #f5f5f5;
+
+    /* Borders */
+    --figma-ui3-border: #e5e5e5;
+    --figma-ui3-border-strong: #1a1a1a;
+    --figma-ui3-border-disabled: #e5e5e5;
+    --figma-ui3-border-disabled-strong: #a3a3a3;
+    --figma-ui3-border-selected: #5520e7;
+    --figma-ui3-border-selected-strong: #5520e7;
+
+    /* Text on disabled */
+    --figma-ui3-text-ondisabled: #f5f5f5;
+
+    /* Remaining overrides to prevent dark theme leakage */
+    --figma-ui3-bg-onselected: #e8ecf4;
+    --figma-ui3-bg-onselected-hover: #dce1ed;
+    --figma-ui3-bg-onselected-pressed: #dce1ed;
+    --figma-ui3-bg-selected-tertiary: #f0f2f7;
+    --figma-ui3-border-brand: #815aec;
+    --figma-ui3-border-brand-strong: #5520e7;
+    --figma-ui3-border-disabled-strong: #d4d4d4;
+    --figma-ui3-border-onbrand: #5520e7;
+    --figma-ui3-border-onbrand-strong: #ffffff;
+    --figma-ui3-border-onselected: #d4d4d4;
+    --figma-ui3-border-onselected-strong: #525252;
+    --figma-ui3-icon-brand: #815aec;
+    --figma-ui3-icon-brand-pressed: #5520e7;
+    --figma-ui3-icon-brand-secondary: #815aec;
+    --figma-ui3-icon-brand-tertiary: #ebdcf9;
+    --figma-ui3-icon-pressed: #5520e7;
+    --figma-ui3-icon-selected: #5520e7;
+    --figma-ui3-icon-selected-secondary: #815aec;
+    --figma-ui3-icon-selected-tertiary: #ebdcf9;
+    --figma-ui3-text-brand: #815aec;
+    --figma-ui3-text-brand-secondary: #815aec;
+    --figma-ui3-text-brand-tertiary: #ebdcf9;
+    --figma-ui3-text-selected: #5520e7;
+    --figma-ui3-text-selected-secondary: #815aec;
+    --figma-ui3-text-selected-tertiary: #ebdcf9;
+  }
+}
+
+/* =========================================
+   MOBILE TOUCH TARGETS & SAFE AREAS
+   ========================================= */
+
+@layer base {
+  /* --- Global Touch Target Enforcement (44px minimum) --- */
+  button,
+  a,
+  [role="button"],
+  select,
+  input:not([type="checkbox"]):not([type="radio"]),
+  textarea {
+    min-height: 44px;
+  }
+
+  /* --- Safe area insets for mobile browsers (notched phones) --- */
+  html {
+    padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+  }
+}
+
+/* =========================================
+   TAILWIND v4 THEME — TOKEN MAPPING
+   =========================================
+   Maps CSS variables into Tailwind utilities
+   so devs can write `bg-brand` instead of
+   `bg-[var(--figma-ui3-bg-brand)]`
+   ========================================= */
+
+@theme {
+  /* --- Colors: Backgrounds --- */
+  --color-surface: var(--figma-ui3-bg);
+  --color-surface-hover: var(--figma-ui3-bg-hover);
+  --color-surface-pressed: var(--figma-ui3-bg-pressed);
+  --color-surface-secondary: var(--figma-ui3-bg-secondary);
+  --color-surface-tertiary: var(--figma-ui3-bg-tertiary);
+  --color-inverse: var(--figma-ui3-bg-inverse);
+  --color-disabled: var(--figma-ui3-bg-disabled);
+
+  --color-brand: var(--figma-ui3-bg-brand);
+  --color-brand-hover: var(--figma-ui3-bg-brand-hover);
+  --color-brand-pressed: var(--figma-ui3-bg-brand-pressed);
+  --color-brand-secondary: var(--figma-ui3-bg-brand-secondary);
+  --color-brand-tertiary: var(--figma-ui3-bg-brand-tertiary);
+
+  --color-danger: var(--figma-ui3-bg-danger);
+  --color-danger-hover: var(--figma-ui3-bg-danger-hover);
+  --color-danger-pressed: var(--figma-ui3-bg-danger-pressed);
+  --color-danger-secondary: var(--figma-ui3-bg-danger-secondary);
+  --color-danger-tertiary: var(--figma-ui3-bg-danger-tertiary);
+
+  --color-success: var(--figma-ui3-bg-success);
+  --color-success-hover: var(--figma-ui3-bg-success-hover);
+  --color-success-pressed: var(--figma-ui3-bg-success-pressed);
+  --color-success-secondary: var(--figma-ui3-bg-success-secondary);
+  --color-success-tertiary: var(--figma-ui3-bg-success-tertiary);
+
+  --color-warning: var(--figma-ui3-bg-warning);
+  --color-warning-hover: var(--figma-ui3-bg-warning-hover);
+  --color-warning-pressed: var(--figma-ui3-bg-warning-pressed);
+  --color-warning-secondary: var(--figma-ui3-bg-warning-secondary);
+  --color-warning-tertiary: var(--figma-ui3-bg-warning-tertiary);
+
+  --color-selected: var(--figma-ui3-bg-selected);
+  --color-selected-hover: var(--figma-ui3-bg-selected-hover);
+  --color-selected-pressed: var(--figma-ui3-bg-selected-pressed);
+  --color-selected-secondary: var(--figma-ui3-bg-selected-secondary);
+  --color-selected-strong: var(--figma-ui3-bg-selected-strong);
+
+  --color-component: var(--figma-ui3-bg-component);
+  --color-component-hover: var(--figma-ui3-bg-component-hover);
+  --color-component-pressed: var(--figma-ui3-bg-component-pressed);
+  --color-component-secondary: var(--figma-ui3-bg-component-secondary);
+
+  /* --- Colors: Text --- */
+  --color-text: var(--figma-ui3-text);
+  --color-text-secondary: var(--figma-ui3-text-secondary);
+  --color-text-tertiary: var(--figma-ui3-text-tertiary);
+  --color-text-disabled: var(--figma-ui3-text-disabled);
+  --color-text-inverse: var(--figma-ui3-text-oninverse);
+  --color-text-brand: var(--figma-ui3-text-brand);
+  --color-text-danger: var(--figma-ui3-text-danger);
+  --color-text-success: var(--figma-ui3-text-success);
+  --color-text-warning: var(--figma-ui3-text-warning);
+  --color-text-on-brand: var(--figma-ui3-text-onbrand);
+  --color-text-on-danger: var(--figma-ui3-text-ondanger);
+  --color-text-on-success: var(--figma-ui3-text-onsuccess);
+  --color-text-on-warning: var(--figma-ui3-text-onwarning);
+  --color-text-on-selected: var(--figma-ui3-text-onselected);
+
+  /* --- Colors: Borders --- */
+  --color-border: var(--figma-ui3-border);
+  --color-border-strong: var(--figma-ui3-border-strong);
+  --color-border-brand: var(--figma-ui3-border-brand);
+  --color-border-brand-strong: var(--figma-ui3-border-brand-strong);
+  --color-border-danger: var(--figma-ui3-border-danger);
+  --color-border-danger-strong: var(--figma-ui3-border-danger-strong);
+  --color-border-success: var(--figma-ui3-border-success);
+  --color-border-success-strong: var(--figma-ui3-border-success-strong);
+  --color-border-selected: var(--figma-ui3-border-selected);
+  --color-border-selected-strong: var(--figma-ui3-border-selected-strong);
+  --color-border-disabled: var(--figma-ui3-border-disabled);
+
+  /* --- Colors: Icons --- */
+  --color-icon: var(--figma-ui3-icon);
+  --color-icon-secondary: var(--figma-ui3-icon-secondary);
+  --color-icon-tertiary: var(--figma-ui3-icon-tertiary);
+  --color-icon-brand: var(--figma-ui3-icon-brand);
+  --color-icon-danger: var(--figma-ui3-icon-danger);
+  --color-icon-success: var(--figma-ui3-icon-success);
+  --color-icon-warning: var(--figma-ui3-icon-warning);
+  --color-icon-disabled: var(--figma-ui3-icon-disabled);
+
+  /* --- Spacing (4px scale) --- */
+  --spacing-sp-1: var(--uix-design-system-spacing-sp-1);
+  --spacing-sp-2: var(--uix-design-system-spacing-sp-2);
+  --spacing-sp-3: var(--uix-design-system-spacing-sp-3);
+  --spacing-sp-4: var(--uix-design-system-spacing-sp-4);
+  --spacing-sp-5: var(--uix-design-system-spacing-sp-5);
+  --spacing-sp-6: var(--uix-design-system-spacing-sp-6);
+  --spacing-sp-7: var(--uix-design-system-spacing-sp-7);
+  --spacing-sp-8: var(--uix-design-system-spacing-sp-8);
+  --spacing-sp-9: var(--uix-design-system-spacing-sp-9);
+  --spacing-sp-10: var(--uix-design-system-spacing-sp-10);
+  --spacing-sp-11: var(--uix-design-system-spacing-sp-11);
+
+  /* --- Border Radius (4px scale) --- */
+  --radius-rd-0: var(--uix-design-system-radius-rd-0);
+  --radius-rd-1: var(--uix-design-system-radius-rd-1);
+  --radius-rd-2: var(--uix-design-system-radius-rd-2);
+  --radius-rd-3: var(--uix-design-system-radius-rd-3);
+  --radius-rd-4: var(--uix-design-system-radius-rd-4);
+  --radius-rd-5: var(--uix-design-system-radius-rd-5);
+  --radius-rd-6: var(--uix-design-system-radius-rd-6);
+  --radius-rd-7: var(--uix-design-system-radius-rd-7);
+  --radius-rd-8: var(--uix-design-system-radius-rd-8);
+  --radius-rd-9: var(--uix-design-system-radius-rd-9);
+  --radius-rd-10: var(--uix-design-system-radius-rd-10);
+  --radius-rd-11: var(--uix-design-system-radius-rd-11);
+
+  /* --- Font Families --- */
+  --font-heading: 'Fraunces', serif;
+  --font-body: 'Outfit', sans-serif;
+
+  /* --- Font Sizes (from typography tokens) --- */
+  --font-size-heading-1: var(--typography-heading-1-fontsize);
+  --font-size-heading-2: var(--typography-heading-2-fontsize);
+  --font-size-heading-3: var(--typography-heading-3-fontsize);
+  --font-size-paragraph-1: var(--typography-paragraph-1-fontsize);
+  --font-size-paragraph-2: var(--typography-paragraph-2-fontsize);
+  --font-size-title-1: var(--typography-title-1-fontsize);
+  --font-size-title-2: var(--typography-title-2-fontsize);
+  --font-size-body-1: var(--typography-body-1-fontsize);
+  --font-size-body-2: var(--typography-body-2-fontsize);
+  --font-size-caption: var(--typography-caption-fontsize);
+}
+
+/* =========================================
+   GLOBAL BUTTON SHAPE OVERRIDES
+   ========================================= */
+@layer components {
+  button {
+    border-radius: 100px !important;
+  }
+}
+
+/* =========================================
+   GLOBAL RESETS & BASE STYLES
+   ========================================= */
+
+@layer base {
+  html {
+    font-family: var(--font-body);
+    color: var(--color-text);
+    background-color: var(--color-surface);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    margin: 0;
+    min-height: 100vh;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
+  }
+}
+
+

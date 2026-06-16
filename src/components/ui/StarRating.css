@@ -1,0 +1,35 @@
+.star-rating {
+  display: inline-flex;
+  gap: var(--uix-design-system-spacing-sp-1);
+  align-items: center;
+}
+
+.star-rating__star-wrapper {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2px;
+  touch-action: manipulation;
+}
+
+.star-rating--readonly .star-rating__star-wrapper {
+  cursor: default;
+}
+
+.star-rating__star {
+  width: 20px;
+  height: 20px;
+  color: var(--figma-ui3-text-tertiary);
+  transition: all 0.2s ease;
+}
+
+.star-rating__star--full,
+.star-rating__star--half {
+  color: #F59E0B; /* A warm gold color for stars */
+}
+
+/* Add slight scale effect on hover if not readonly */
+.star-rating:not(.star-rating--readonly) .star-rating__star-wrapper:active .star-rating__star {
+  transform: scale(0.9);
+}

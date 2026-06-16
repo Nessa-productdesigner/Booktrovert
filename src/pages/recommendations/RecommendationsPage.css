@@ -1,0 +1,315 @@
+.recs-page {
+  padding: var(--uix-design-system-spacing-sp-8) var(--uix-design-system-spacing-sp-6);
+  max-width: 1000px;
+  margin: 0 auto;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.recs-page__header {
+  margin-bottom: var(--uix-design-system-spacing-sp-8);
+}
+
+.recs-page__title {
+  font-family: var(--typography-heading-3-font-family);
+  font-size: var(--typography-heading-3-fontsize);
+  font-weight: 600;
+  color: var(--figma-ui3-text);
+  margin: 0 0 var(--uix-design-system-spacing-sp-2) 0;
+}
+
+.recs-page__subtitle {
+  color: var(--figma-ui3-text-secondary);
+  font-family: var(--typography-body-3-font-family);
+  margin: 0;
+}
+
+.recs-page__list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--uix-design-system-spacing-sp-6);
+}
+
+.recs-page__refresh-btn {
+  align-self: flex-end;
+  background-color: var(--figma-ui3-bg-secondary);
+  color: var(--figma-ui3-text);
+  border: 1px solid var(--figma-ui3-border);
+  padding: var(--uix-design-system-spacing-sp-2) var(--uix-design-system-spacing-sp-4);
+  border-radius: var(--uix-design-system-radius-rd-2);
+  font-family: var(--typography-body-4-font-family);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  min-height: 44px;
+}
+
+.recs-page__refresh-btn:hover:not(:disabled) {
+  background-color: var(--figma-ui3-bg-hover);
+}
+
+.recs-page__refresh-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.recs-page__card {
+  display: flex;
+  background-color: var(--figma-ui3-bg);
+  border: 1px solid var(--figma-ui3-border);
+  border-radius: var(--uix-design-system-radius-rd-4);
+  padding: var(--uix-design-system-spacing-sp-6);
+  gap: var(--uix-design-system-spacing-sp-6);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.recs-page__card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+}
+
+.recs-page__card-cover {
+  flex-shrink: 0;
+  width: 140px;
+  height: 210px;
+  border-radius: var(--uix-design-system-radius-rd-2);
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.recs-page__card-cover img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.recs-page__card-placeholder {
+  width: 100%;
+  height: 100%;
+  background-color: var(--figma-ui3-bg-secondary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--figma-ui3-text-tertiary);
+  font-size: var(--typography-caption-fontsize);
+}
+
+.recs-page__card-info {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-width: 0;
+}
+
+.recs-page__card-title {
+  margin: 0;
+  font-family: var(--typography-title-4-font-family);
+  font-size: var(--typography-title-4-fontsize);
+  color: var(--figma-ui3-text);
+  line-height: 1.2;
+}
+
+.recs-page__card-author {
+  margin: var(--uix-design-system-spacing-sp-1) 0 var(--uix-design-system-spacing-sp-4) 0;
+  font-family: var(--typography-body-3-font-family);
+  color: var(--figma-ui3-text-secondary);
+}
+
+.recs-page__card-reason {
+  background-color: var(--figma-ui3-bg-brand-tertiary);
+  padding: var(--uix-design-system-spacing-sp-3) var(--uix-design-system-spacing-sp-4);
+  border-radius: var(--uix-design-system-radius-rd-2);
+  border-left: 3px solid var(--figma-ui3-bg-brand);
+  color: var(--figma-ui3-text);
+  font-family: var(--typography-body-4-font-family);
+  line-height: 1.5;
+  margin-bottom: var(--uix-design-system-spacing-sp-4);
+}
+
+.recs-page__card-reason strong {
+  color: var(--figma-ui3-text-brand);
+}
+
+.recs-page__card-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--uix-design-system-spacing-sp-2);
+  margin-bottom: var(--uix-design-system-spacing-sp-6);
+}
+
+.recs-page__card-tag-pill {
+  background-color: var(--figma-ui3-bg-secondary);
+  color: var(--figma-ui3-text-secondary);
+  padding: var(--uix-design-system-spacing-sp-1) var(--uix-design-system-spacing-sp-3);
+  border-radius: 100px;
+  font-size: var(--typography-caption-fontsize);
+  font-family: var(--typography-body-4-font-family);
+  border: 1px solid var(--figma-ui3-border);
+}
+
+.recs-page__card-actions {
+  margin-top: auto;
+  display: flex;
+  gap: var(--uix-design-system-spacing-sp-3);
+}
+
+.recs-page__btn-save {
+  background-color: transparent;
+  color: var(--figma-ui3-text-brand);
+  border: 1px solid var(--figma-ui3-border-brand);
+  padding: var(--uix-design-system-spacing-sp-3) var(--uix-design-system-spacing-sp-6);
+  border-radius: var(--uix-design-system-radius-rd-2);
+  font-family: var(--typography-body-3-font-family);
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  min-height: 44px;
+}
+
+.recs-page__btn-save:hover {
+  background-color: var(--figma-ui3-bg-brand);
+  color: var(--figma-ui3-text-onbrand);
+}
+
+.recs-page__btn-dismiss {
+  background-color: transparent;
+  color: var(--figma-ui3-text-secondary);
+  border: 1px solid var(--figma-ui3-border);
+  padding: var(--uix-design-system-spacing-sp-3) var(--uix-design-system-spacing-sp-4);
+  border-radius: var(--uix-design-system-radius-rd-2);
+  font-family: var(--typography-body-3-font-family);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  min-height: 44px;
+}
+
+.recs-page__btn-dismiss:hover {
+  color: var(--figma-ui3-text-danger);
+  border-color: var(--figma-ui3-bg-danger);
+  background-color: rgba(255, 0, 0, 0.05);
+}
+
+.recs-page__empty, .recs-page__loading, .recs-page__error {
+  text-align: center;
+  padding: var(--uix-design-system-spacing-sp-10) 0;
+  color: var(--figma-ui3-text-tertiary);
+}
+
+.recs-page__error {
+  color: var(--figma-ui3-text-danger);
+}
+
+.recs-page__empty-state h2 {
+  color: var(--figma-ui3-text);
+  font-family: var(--typography-heading-4-font-family);
+  margin-bottom: var(--uix-design-system-spacing-sp-2);
+}
+
+.recs-page__generate-btn {
+  margin-top: var(--uix-design-system-spacing-sp-6);
+  background-color: var(--figma-ui3-bg-brand);
+  color: var(--figma-ui3-text-onbrand);
+  border: none;
+  padding: var(--uix-design-system-spacing-sp-4) var(--uix-design-system-spacing-sp-8);
+  border-radius: var(--uix-design-system-radius-rd-3);
+  font-family: var(--typography-title-6-font-family);
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  box-shadow: 0 4px 12px rgba(85, 32, 231, 0.3);
+  min-height: 44px;
+}
+
+.recs-page__generate-btn:hover {
+  background-color: var(--figma-ui3-bg-brand-hover);
+  transform: translateY(-1px);
+}
+
+.recs-page__engine-animation {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--uix-design-system-spacing-sp-4);
+}
+
+.recs-page__engine-animation h2 {
+  color: var(--figma-ui3-text-brand);
+  font-family: var(--typography-heading-4-font-family);
+  margin: 0;
+  animation: pulse 1.5s infinite ease-in-out;
+}
+
+.spinner {
+  width: 50px;
+  height: 50px;
+  border: 4px solid var(--figma-ui3-border);
+  border-top: 4px solid var(--figma-ui3-bg-brand);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes pulse {
+  0% { opacity: 0.6; }
+  50% { opacity: 1; }
+  100% { opacity: 0.6; }
+}
+
+/* =========================================
+   MOBILE RESPONSIVE
+   ========================================= */
+
+@media (max-width: 768px) {
+  .recs-page {
+    padding: var(--uix-design-system-spacing-sp-4);
+  }
+
+  .recs-page__header {
+    margin-bottom: var(--uix-design-system-spacing-sp-5);
+  }
+
+  .recs-page__card {
+    flex-direction: column;
+    padding: var(--uix-design-system-spacing-sp-4);
+  }
+
+  .recs-page__card-cover {
+    width: 120px;
+    height: 180px;
+    margin: 0 auto;
+  }
+
+  .recs-page__card-info {
+    text-align: center;
+  }
+
+  .recs-page__card-tags {
+    justify-content: center;
+  }
+
+  .recs-page__card-reason {
+    text-align: left;
+  }
+
+  .recs-page__card-actions {
+    flex-direction: column;
+  }
+
+  .recs-page__btn-save,
+  .recs-page__btn-dismiss {
+    width: 100%;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .recs-page__refresh-btn {
+    align-self: stretch;
+    text-align: center;
+  }
+}
+
+

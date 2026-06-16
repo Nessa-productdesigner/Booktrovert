@@ -1,0 +1,196 @@
+.share-modal__overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: var(--uix-design-system-spacing-sp-4);
+  backdrop-filter: blur(4px);
+}
+
+.share-modal__content {
+  background-color: var(--figma-ui3-bg);
+  padding: var(--uix-design-system-spacing-sp-6);
+  border-radius: var(--uix-design-system-radius-rd-4);
+  width: 100%;
+  max-width: 400px;
+  position: relative;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  animation: scaleIn 0.2s ease forwards;
+}
+
+@keyframes scaleIn {
+  from { transform: scale(0.95); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+.share-modal__close {
+  position: absolute;
+  top: var(--uix-design-system-spacing-sp-4);
+  right: var(--uix-design-system-spacing-sp-4);
+  background: none;
+  border: none;
+  font-size: 18px;
+  color: var(--figma-ui3-text-secondary);
+  cursor: pointer;
+  padding: var(--uix-design-system-spacing-sp-1);
+  width: 44px;
+  height: 44px;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+}
+
+.share-modal__title {
+  margin: 0 0 var(--uix-design-system-spacing-sp-4) 0;
+  font-family: var(--typography-title-6-font-family);
+  font-size: var(--typography-title-6-fontsize);
+  color: var(--figma-ui3-text);
+  padding-right: 40px;
+}
+
+.share-modal__error {
+  color: var(--figma-ui3-text-danger);
+  background-color: var(--figma-ui3-bg-danger);
+  padding: var(--uix-design-system-spacing-sp-3);
+  border-radius: var(--uix-design-system-radius-rd-2);
+  margin-bottom: var(--uix-design-system-spacing-sp-4);
+  font-family: var(--typography-body-4-font-family);
+  font-size: var(--typography-body-4-fontsize);
+}
+
+.share-modal__form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--uix-design-system-spacing-sp-3);
+}
+
+.share-modal__label {
+  font-family: var(--typography-title-7-font-family);
+  font-size: var(--typography-title-7-fontsize);
+  font-weight: 500;
+  color: var(--figma-ui3-text);
+}
+
+.share-modal__textarea {
+  width: 100%;
+  padding: var(--uix-design-system-spacing-sp-3);
+  border: 1px solid var(--figma-ui3-border);
+  border-radius: var(--uix-design-system-radius-rd-2);
+  background-color: var(--figma-ui3-bg);
+  color: var(--figma-ui3-text);
+  font-family: var(--typography-body-4-font-family);
+  font-size: var(--typography-body-4-fontsize);
+  resize: vertical;
+  min-height: 80px;
+  box-sizing: border-box;
+}
+
+.share-modal__textarea:focus {
+  outline: none;
+  border-color: var(--figma-ui3-border-brand);
+}
+
+.share-modal__generate-btn {
+  padding: var(--uix-design-system-spacing-sp-3);
+  background-color: var(--figma-ui3-bg-brand);
+  color: var(--figma-ui3-text-onbrand);
+  border: none;
+  border-radius: var(--uix-design-system-radius-rd-2);
+  font-family: var(--typography-body-3-font-family);
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: var(--uix-design-system-spacing-sp-2);
+  min-height: 44px;
+}
+
+.share-modal__generate-btn:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.share-modal__result {
+  display: flex;
+  flex-direction: column;
+  gap: var(--uix-design-system-spacing-sp-3);
+}
+
+.share-modal__ready-text {
+  margin: 0;
+  font-family: var(--typography-body-3-font-family);
+  font-weight: 600;
+  color: var(--figma-ui3-text);
+}
+
+.share-modal__copy-row {
+  display: flex;
+  gap: var(--uix-design-system-spacing-sp-2);
+}
+
+.share-modal__url-input {
+  flex: 1;
+  padding: var(--uix-design-system-spacing-sp-2);
+  border: 1px solid var(--figma-ui3-border);
+  border-radius: var(--uix-design-system-radius-rd-2);
+  background-color: var(--figma-ui3-bg-secondary);
+  color: var(--figma-ui3-text);
+  font-family: var(--typography-body-4-font-family);
+  min-height: 44px;
+}
+
+.share-modal__copy-btn {
+  padding: var(--uix-design-system-spacing-sp-2) var(--uix-design-system-spacing-sp-4);
+  background-color: var(--figma-ui3-bg-brand);
+  color: var(--figma-ui3-text-onbrand);
+  border: none;
+  border-radius: var(--uix-design-system-radius-rd-2);
+  font-family: var(--typography-body-4-font-family);
+  font-weight: 600;
+  cursor: pointer;
+  min-height: 44px;
+  white-space: nowrap;
+}
+
+.share-modal__toast {
+  margin: 0;
+  color: var(--figma-ui3-text);
+  font-family: var(--typography-body-4-font-family);
+  font-size: var(--typography-body-4-fontsize);
+  font-weight: 600;
+  text-align: center;
+  animation: slideIn 0.2s ease forwards;
+}
+
+/* =========================================
+   MOBILE RESPONSIVE
+   ========================================= */
+
+@media (max-width: 768px) {
+  .share-modal__overlay {
+    padding: 0;
+    align-items: flex-end;
+  }
+
+  .share-modal__content {
+    border-radius: var(--uix-design-system-radius-rd-4) var(--uix-design-system-radius-rd-4) 0 0;
+    padding-bottom: calc(var(--uix-design-system-spacing-sp-6) + env(safe-area-inset-bottom));
+  }
+
+  .share-modal__copy-row {
+    flex-direction: column;
+  }
+
+  .share-modal__copy-btn {
+    width: 100%;
+    text-align: center;
+  }
+}
+
+

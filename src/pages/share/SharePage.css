@@ -1,0 +1,233 @@
+.share-page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--uix-design-system-spacing-sp-6);
+  background:
+    radial-gradient(ellipse 80% 50% at 50% -20%, rgba(12, 140, 233, 0.06), transparent),
+    radial-gradient(ellipse 60% 40% at 80% 100%, rgba(138, 56, 245, 0.04), transparent),
+    var(--figma-ui3-bg);
+}
+
+.share-page__loader {
+  color: var(--figma-ui3-text-tertiary);
+  font-family: var(--font-body);
+  font-size: var(--typography-body-1-fontsize);
+}
+
+.share-page__error {
+  text-align: center;
+  max-width: 400px;
+}
+
+.share-page__error-title {
+  font-family: var(--font-heading);
+  font-size: var(--typography-heading-2-fontsize);
+  color: var(--figma-ui3-text);
+  margin: 0 0 var(--uix-design-system-spacing-sp-3);
+}
+
+.share-page__error-text {
+  color: var(--figma-ui3-text-secondary);
+  font-family: var(--font-body);
+  font-size: var(--typography-body-1-fontsize);
+  margin: 0 0 var(--uix-design-system-spacing-sp-6);
+}
+
+.share-page__home-link {
+  color: var(--figma-ui3-bg-brand);
+  text-decoration: none;
+  font-weight: 600;
+  font-family: var(--font-body);
+}
+
+.share-page__card {
+  max-width: 480px;
+  width: 100%;
+}
+
+.share-page__badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--uix-design-system-spacing-sp-2);
+  padding: var(--uix-design-system-spacing-sp-1) var(--uix-design-system-spacing-sp-3);
+  border-radius: 100px;
+  background: rgba(12, 140, 233, 0.08);
+  border: 1px solid rgba(12, 140, 233, 0.12);
+  font-family: var(--font-body);
+  font-size: var(--typography-caption-fontsize);
+  color: var(--figma-ui3-bg-brand);
+  margin-bottom: var(--uix-design-system-spacing-sp-6);
+}
+
+.share-page__book {
+  display: flex;
+  gap: var(--uix-design-system-spacing-sp-5);
+  margin-bottom: var(--uix-design-system-spacing-sp-8);
+}
+
+.share-page__cover-wrapper {
+  flex-shrink: 0;
+  width: 120px;
+  border-radius: var(--radius-rd-2);
+  overflow: hidden;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+  background: var(--color-surface-secondary);
+}
+
+.share-page__cover {
+  width: 100%;
+  display: block;
+}
+
+.share-page__cover-placeholder {
+  aspect-ratio: 2 / 3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--figma-ui3-text-tertiary);
+  font-size: var(--typography-caption-fontsize);
+  font-family: var(--font-body);
+}
+
+.share-page__info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-width: 0;
+}
+
+.share-page__title {
+  font-family: var(--font-heading);
+  font-size: var(--typography-heading-3-fontsize);
+  color: var(--figma-ui3-text);
+  margin: 0 0 var(--uix-design-system-spacing-sp-1);
+  line-height: 1.2;
+}
+
+.share-page__author {
+  font-family: var(--font-body);
+  font-size: var(--typography-body-1-fontsize);
+  color: var(--figma-ui3-text-secondary);
+  margin: 0;
+}
+
+.share-page__custom-message {
+  background: var(--figma-ui3-bg);
+  border-left: 4px solid var(--figma-ui3-bg-brand);
+  padding: var(--uix-design-system-spacing-sp-4);
+  margin-bottom: var(--uix-design-system-spacing-sp-5);
+  font-family: var(--typography-body-2-font-family);
+  font-size: var(--typography-body-2-fontsize);
+  color: var(--figma-ui3-text);
+  font-style: italic;
+}
+
+.share-page__custom-message p {
+  margin: 0;
+}
+
+.share-page__tags {
+  background: var(--figma-ui3-bg-secondary);
+  border-radius: var(--radius-rd-3);
+  padding: var(--uix-design-system-spacing-sp-5);
+  margin-bottom: var(--uix-design-system-spacing-sp-6);
+}
+
+.share-page__tags-heading {
+  font-family: var(--font-body);
+  font-size: var(--typography-body-2-fontsize);
+  font-weight: 600;
+  color: var(--figma-ui3-text);
+  margin: 0 0 var(--uix-design-system-spacing-sp-4);
+}
+
+.share-page__dimension {
+  margin-bottom: var(--uix-design-system-spacing-sp-3);
+}
+
+.share-page__dimension:last-child {
+  margin-bottom: 0;
+}
+
+.share-page__dimension-label {
+  display: block;
+  font-family: var(--font-body);
+  font-size: var(--typography-caption-fontsize);
+  font-weight: 600;
+  color: var(--figma-ui3-text-tertiary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: var(--uix-design-system-spacing-sp-1);
+}
+
+.share-page__dimension-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--uix-design-system-spacing-sp-1);
+}
+
+.share-page__tag {
+  display: inline-block;
+  padding: var(--uix-design-system-spacing-sp-1) var(--uix-design-system-spacing-sp-2);
+  border-radius: 100px;
+  background: var(--figma-ui3-bg);
+  border: 1px solid var(--figma-ui3-border);
+  font-family: var(--font-body);
+  font-size: var(--typography-caption-fontsize);
+  color: var(--figma-ui3-text-secondary);
+}
+
+.share-page__footer {
+  text-align: center;
+}
+
+.share-page__cta {
+  display: inline-block;
+  padding: var(--uix-design-system-spacing-sp-3) var(--uix-design-system-spacing-sp-6);
+  border-radius: var(--radius-rd-2);
+  background: var(--figma-ui3-bg-brand);
+  color: var(--figma-ui3-text-onbrand);
+  font-family: var(--font-body);
+  font-size: var(--typography-body-1-fontsize);
+  font-weight: 600;
+  text-decoration: none;
+  transition: background 0.2s ease;
+  min-height: 44px;
+}
+
+.share-page__cta:hover {
+  background: var(--figma-ui3-bg-brand-hover);
+}
+
+/* =========================================
+   MOBILE RESPONSIVE
+   ========================================= */
+
+@media (max-width: 480px) {
+  .share-page {
+    padding: var(--uix-design-system-spacing-sp-4);
+    align-items: flex-start;
+    padding-top: var(--uix-design-system-spacing-sp-10);
+  }
+
+  .share-page__book {
+    gap: var(--uix-design-system-spacing-sp-3);
+  }
+
+  .share-page__cover-wrapper {
+    width: 100px;
+  }
+
+  .share-page__tags {
+    padding: var(--uix-design-system-spacing-sp-4);
+  }
+
+  .share-page__cta {
+    width: 100%;
+    text-align: center;
+  }
+}
+
+

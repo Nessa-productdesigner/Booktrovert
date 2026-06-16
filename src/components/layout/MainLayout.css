@@ -1,0 +1,275 @@
+.main-layout {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--figma-ui3-bg);
+}
+
+.main-layout__header {
+  background-color: var(--figma-ui3-bg);
+  border-bottom: 1px solid var(--figma-ui3-border);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.main-layout__header-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--uix-design-system-spacing-sp-6);
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.main-layout__brand {
+  display: flex;
+  align-items: center;
+}
+
+.main-layout__logo {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  font-family: var(--typography-heading-4-font-family);
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--figma-ui3-text);
+  text-decoration: none;
+  letter-spacing: -0.02em;
+  line-height: 1;
+}
+
+/* Desktop nav (hidden on mobile) */
+.main-layout__nav {
+  display: flex;
+  gap: var(--uix-design-system-spacing-sp-8);
+  height: 100%;
+}
+
+.main-layout__nav-link {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  font-family: var(--typography-title-6-font-family);
+  font-size: var(--typography-title-6-fontsize);
+  color: var(--figma-ui3-text-secondary);
+  text-decoration: none;
+  position: relative;
+  transition: color 0.2s ease;
+}
+
+.main-layout__nav-link:hover {
+  color: var(--figma-ui3-text);
+}
+
+.main-layout__nav-link--active {
+  color: var(--figma-ui3-text-brand);
+  font-weight: 600;
+}
+
+.main-layout__nav-link--active::after {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background-color: var(--figma-ui3-bg-brand);
+  border-radius: 3px 3px 0 0;
+}
+
+/* Nav link icons — only visible on mobile bottom bar */
+.main-layout__nav-icon {
+  display: none;
+}
+
+.main-layout__actions {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.main-layout__profile-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  min-height: 44px;
+  min-width: 44px;
+  justify-content: center;
+}
+
+.main-layout__avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background-color: var(--figma-ui3-bg-secondary);
+  color: var(--figma-ui3-text);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--typography-body-4-font-family);
+  font-size: var(--typography-body-4-fontsize);
+  font-weight: 500;
+  transition: opacity 0.2s ease;
+}
+
+.main-layout__profile-btn:hover .main-layout__avatar {
+  opacity: 0.85;
+}
+
+.main-layout__dropdown {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  margin-top: var(--uix-design-system-spacing-sp-2);
+  min-width: 200px;
+  background-color: var(--figma-ui3-bg);
+  border: 1px solid var(--figma-ui3-border);
+  border-radius: var(--uix-design-system-radius-rd-3);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  z-index: 200;
+}
+
+.main-layout__dropdown-header {
+  padding: var(--uix-design-system-spacing-sp-3) var(--uix-design-system-spacing-sp-4);
+  display: flex;
+  flex-direction: column;
+  gap: var(--uix-design-system-spacing-sp-1);
+}
+
+.main-layout__dropdown-name {
+  font-family: var(--typography-body-4-font-family);
+  font-size: var(--typography-body-4-fontsize);
+  color: var(--figma-ui3-text);
+  font-weight: 500;
+}
+
+.main-layout__dropdown-email {
+  font-family: var(--typography-caption-font-family);
+  font-size: var(--typography-caption-fontsize);
+  color: var(--figma-ui3-text-secondary);
+  font-weight: 500;
+}
+
+.main-layout__dropdown-divider {
+  height: 1px;
+  background-color: var(--figma-ui3-border);
+}
+
+.main-layout__dropdown-item {
+  width: 100%;
+  background: none;
+  border: none;
+  padding: var(--uix-design-system-spacing-sp-3) var(--uix-design-system-spacing-sp-4);
+  color: var(--figma-ui3-text-danger);
+  font-family: var(--typography-body-4-font-family);
+  font-size: var(--typography-body-4-fontsize);
+  cursor: pointer;
+  text-align: left;
+  transition: background-color 0.15s ease;
+}
+
+.main-layout__dropdown-item:hover {
+  background-color: var(--figma-ui3-bg-hover);
+}
+
+.main-layout__content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+/* =========================================
+   MOBILE BOTTOM NAVIGATION BAR
+   ========================================= */
+
+/* Mobile bottom nav — hidden on desktop */
+.main-layout__bottom-nav {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .main-layout__header-container {
+    padding: 0 var(--uix-design-system-spacing-sp-4);
+    height: 56px;
+  }
+
+  .main-layout__logo {
+  }
+
+  /* Hide the desktop nav in the header on mobile */
+  .main-layout__nav {
+    display: none;
+  }
+
+  /* Show the bottom nav on mobile */
+  .main-layout__bottom-nav {
+    display: flex;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    background-color: var(--figma-ui3-bg);
+    border-top: 1px solid var(--figma-ui3-border);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+
+  .main-layout__bottom-nav-inner {
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+    align-items: center;
+    height: 60px;
+  }
+
+  .main-layout__bottom-nav-link {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2px;
+    text-decoration: none;
+    color: var(--figma-ui3-text-secondary);
+    font-family: var(--typography-caption-font-family);
+    font-size: 0.625rem;
+    font-weight: 600;
+    min-height: 44px;
+    min-width: 44px;
+    padding: var(--uix-design-system-spacing-sp-1) var(--uix-design-system-spacing-sp-2);
+    transition: color 0.2s ease;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .main-layout__bottom-nav-link:hover {
+    color: var(--figma-ui3-text);
+  }
+
+  .main-layout__bottom-nav-link--active {
+    color: var(--figma-ui3-text-brand);
+  }
+
+  .main-layout__bottom-nav-icon {
+    width: 24px;
+    height: 24px;
+  }
+
+  .main-layout__bottom-nav-label {
+    line-height: 1;
+    letter-spacing: 0.02em;
+  }
+
+  /* Add bottom padding so content doesn't sit behind the bottom nav */
+  .main-layout__content {
+    padding-bottom: calc(60px + env(safe-area-inset-bottom));
+  }
+}
+
+
