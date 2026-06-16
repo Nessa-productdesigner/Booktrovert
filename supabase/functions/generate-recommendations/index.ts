@@ -212,8 +212,11 @@ IMPORTANT RULES:
       const info = item.volumeInfo || {};
       
       let coverUrl = null;
-      if (info.imageLinks && info.imageLinks.thumbnail) {
-        coverUrl = info.imageLinks.thumbnail.replace(/^http:\/\//i, 'https://');
+      if (info.imageLinks) {
+        const bestImage = info.imageLinks.medium || info.imageLinks.small || info.imageLinks.thumbnail || info.imageLinks.smallThumbnail;
+        if (bestImage) {
+          coverUrl = bestImage.replace(/^http:\/\//i, 'https://');
+        }
       }
 
       // 1. Upsert into global `books` table
