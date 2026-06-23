@@ -1,13 +1,13 @@
-import { useState, useCallback, useMemo } from 'react';
+import { useState, useCallback, useMemo, useEffect } from 'react';
 import { supabase } from '../../lib/supabase';
 import { useAuthStore } from '../../store/useAuthStore';
 import { useAsyncData } from '../../lib/useAsyncData';
-import { getHighResCoverUrl } from '../../lib/utils';
 import type { ShelfType } from '../../lib/db';
 import type { BooktrovertBook } from '../../store/useOnboardingStore';
 import AddBookModal from '../../components/shelf/AddBookModal';
 import BookDetailModal from '../../components/shelf/BookDetailModal';
 import StarRating from '../../components/ui/StarRating';
+import BookCover from '../../components/ui/BookCover';
 import ShareModal from '../../components/share/ShareModal';
 import './ShelfPage.css';
 
@@ -38,6 +38,9 @@ export default function ShelfPage() {
   const [sharingBookId, setSharingBookId] = useState<string | null>(null);
   const [sharingShelf, setSharingShelf] = useState<ShelfType | null>(null);
   const [selectedBookForDetail, setSelectedBookForDetail] = useState<BooktrovertBook | null>(null);
+  const [menuOpenUserbookId, setMenuOpenUserbookId] = useState<string | null>(null);
+  const [confirmRemoveId, setConfirmRemoveId] = useState<string | null>(null);
+  const [removingId, setRemovingId] = useState<string | null>(null);
 
   const fetchBooks = useCallback(async () => {
     if (!user) return [];
@@ -60,6 +63,33 @@ export default function ShelfPage() {
     setSharingBookId(bookId);
     setSharingShelf(shelf);
   };
+
+  const handleRemoveFromShelf = async () => {
+    if (!confirmRemoveId) return;
+    setRemovingId(confirmRemoveId);
+    setMenuOpenUserbookId(null);
+    try {
+      const { error: deleteError } = await supabase
+        .from('userbooks')
+        .delete()
+        .eq('userbook_id', confirmRemoveId);
+      if (deleteError) throw deleteError;
+      setConfirmRemoveId(null);
+      await fetchShelf();
+    } catch (err) {
+      console.error('Remove error:', (err as Error).message);
+    } finally {
+      setRemovingId(null);
+    }
+  };
+
+  useEffect(() => {
+    if (menuOpenUserbookId) {
+      const handler = () => setMenuOpenUserbookId(null);
+      window.addEventListener('click', handler);
+      return () => window.removeEventListener('click', handler);
+    }
+  }, [menuOpenUserbookId]);
 
   const displayedBooks = useMemo(() => userBooks.filter(ub => ub.shelf === activeTab), [userBooks, activeTab]);
 
@@ -103,14 +133,54 @@ export default function ShelfPage() {
             {displayedBooks.map((ub) => (
               <div key={ub.userbook_id} className="shelf-page__book-card" onClick={() => setSelectedBookForDetail(ub.book)}>
                 <div className="shelf-page__book-cover-wrapper">
-                  {ub.book.cover_url ? (
-                    <img src={getHighResCoverUrl(ub.book.cover_url)} alt={ub.book.title} className="shelf-page__book-cover" />
-                  ) : (
-                    <div className="shelf-page__book-placeholder">No Cover</div>
-                  )}
+                  <BookCover coverUrl={ub.book.cover_url} title={ub.book.title} className="shelf-page__book-cover" />
                 </div>
                 <div className="shelf-page__book-info">
-                  <h3 className="shelf-page__book-title" title={ub.book.title}>{ub.book.title}</h3>
+                  <div className="shelf-page__book-title-row">
+                    <h3 className="shelf-page__book-title" title={ub.book.title}>{ub.book.title}</h3>
+                    <button
+                      type="button"
+                      className="shelf-page__menu-btn"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        setMenuOpenUserbookId(menuOpenUserbookId === ub.userbook_id ? null : ub.userbook_id);
+                      }}
+                      aria-label="Book options"
+                    >
+                      ⋮
+                    </button>
+                    {menuOpenUserbookId === ub.userbook_id && (
+                      <div className="shelf-page__dropdown" onClick={(e) => e.stopPropagation()}>
+                        {(ub.shelf === 'currently_reading' || ub.shelf === 'read') && (
+                          <button
+                            type="button"
+                            className="shelf-page__dropdown-item shelf-page__dropdown-item--default"
+                            onClick={(e) => {
+                              e.preventDefault();
+                              e.stopPropagation();
+                              handleShareClick(ub.book.book_id || (ub.book as any).id, ub.shelf);
+                              setMenuOpenUserbookId(null);
+                            }}
+                          >
+                            Share
+                          </button>
+                        )}
+                        <button
+                          type="button"
+                          className="shelf-page__dropdown-item"
+                          onClick={(e) => {
+                            e.preventDefault();
+                            e.stopPropagation();
+                            setConfirmRemoveId(ub.userbook_id);
+                            setMenuOpenUserbookId(null);
+                          }}
+                        >
+                          Remove from shelf
+                        </button>
+                      </div>
+                    )}
+                  </div>
                   <p className="shelf-page__book-author">{ub.book.author}</p>
                   
                   <div className="shelf-page__book-footer">
@@ -119,28 +189,6 @@ export default function ShelfPage() {
                         <StarRating rating={ub.rating || 0} readOnly />
                       </div>
                     ) : <div />}
-
-                    {(ub.shelf === 'currently_reading' || ub.shelf === 'read') && (
-                      <button
-                        type="button"
-                        className="shelf-page__share-btn"
-                        onClick={(e) => { 
-                          e.preventDefault();
-                          e.stopPropagation();
-                          const targetId = ub.book.book_id;
-                          handleShareClick(targetId, ub.shelf); 
-                        }}
-                        title="Share this book"
-                      >
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                          <circle cx="18" cy="5" r="3"></circle>
-                          <circle cx="6" cy="12" r="3"></circle>
-                          <circle cx="18" cy="19" r="3"></circle>
-                          <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>
-                          <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
-                        </svg>
-                      </button>
-                    )}
                   </div>
                 </div>
               </div>
@@ -198,6 +246,32 @@ export default function ShelfPage() {
             setShowAddModal(true);
           }}
         />
+      )}
+
+      {confirmRemoveId && (
+        <div className="shelf-page__confirm-overlay" onClick={() => setConfirmRemoveId(null)}>
+          <div className="shelf-page__confirm-dialog" onClick={(e) => e.stopPropagation()}>
+            <p className="shelf-page__confirm-text">Remove this book from your shelf?</p>
+            <div className="shelf-page__confirm-actions">
+              <button
+                type="button"
+                className="shelf-page__confirm-cancel"
+                onClick={() => setConfirmRemoveId(null)}
+                disabled={removingId !== null}
+              >
+                Cancel
+              </button>
+              <button
+                type="button"
+                className="shelf-page__confirm-delete"
+                onClick={handleRemoveFromShelf}
+                disabled={removingId !== null}
+              >
+                {removingId === confirmRemoveId ? 'Removing...' : 'Remove'}
+              </button>
+            </div>
+          </div>
+        </div>
       )}
     </div>
   );

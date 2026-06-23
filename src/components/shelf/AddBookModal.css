@@ -3,7 +3,8 @@
   top: 0;
   left: 0;
   right: 0;
-  bottom: 0;
+  height: 100vh;
+  height: 100dvh;
   background-color: rgba(0, 0, 0, 0.6);
   display: flex;
   align-items: center;
@@ -11,6 +12,7 @@
   z-index: 1000;
   padding: var(--uix-design-system-spacing-sp-4);
   backdrop-filter: blur(4px);
+  box-sizing: border-box;
 }
 
 .add-book-modal__container {
@@ -24,6 +26,7 @@
   position: relative;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
   overflow: hidden;
+  box-sizing: border-box;
 }
 
 .add-book-modal__close {
@@ -44,6 +47,7 @@
   justify-content: center;
   border-radius: 50%;
   transition: background-color 0.2s ease;
+  box-sizing: border-box;
 }
 
 .add-book-modal__close:hover {
@@ -57,6 +61,9 @@
   flex-direction: column;
   height: 100%;
   overflow-y: auto;
+  box-sizing: border-box;
+  max-width: 100%;
+  overflow-x: hidden;
 }
 
 .add-book-modal__step--tagging {
@@ -69,7 +76,7 @@
   font-weight: 500;
   color: var(--figma-ui3-text);
   margin: 0 0 var(--uix-design-system-spacing-sp-6) 0;
-  padding-right: 40px;
+  padding-right: 56px;
 }
 
 .add-book-modal__subtitle {
@@ -80,7 +87,7 @@
 }
 
 .add-book-modal__error {
-  background-color: var(--figma-ui3-bg-danger);
+  background-color: #FFE9E9;
   color: var(--figma-ui3-text-danger);
   padding: var(--uix-design-system-spacing-sp-3);
   text-align: center;
@@ -95,6 +102,13 @@
   background-color: var(--figma-ui3-bg-secondary);
   border-radius: var(--uix-design-system-radius-rd-2);
   margin-bottom: var(--uix-design-system-spacing-sp-6);
+  box-sizing: border-box;
+  max-width: 100%;
+}
+
+.add-book-modal__book-preview > div:last-child {
+  min-width: 0;
+  flex: 1;
 }
 
 .add-book-modal__book-preview img {
@@ -102,6 +116,7 @@
   height: 90px;
   object-fit: cover;
   border-radius: var(--uix-design-system-radius-rd-1);
+  flex-shrink: 0;
 }
 
 .add-book-modal__preview-placeholder {
@@ -115,18 +130,25 @@
   text-align: center;
   color: var(--figma-ui3-text-secondary);
   border-radius: var(--uix-design-system-radius-rd-1);
+  flex-shrink: 0;
 }
 
 .add-book-modal__book-preview h3 {
   margin: 0 0 var(--uix-design-system-spacing-sp-1) 0;
   font-family: var(--typography-title-6-font-family);
   color: var(--figma-ui3-text);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .add-book-modal__book-preview p {
   margin: 0;
   color: var(--figma-ui3-text-secondary);
   font-family: var(--typography-body-4-font-family);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .add-book-modal__read-synopsis {
@@ -160,6 +182,8 @@
   transition: all 0.2s ease;
   text-align: left;
   min-height: 44px;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .add-book-modal__shelves button:hover:not(:disabled) {
@@ -219,15 +243,46 @@
   .add-book-modal__overlay {
     padding: 0;
     align-items: flex-end;
+    overscroll-behavior: contain;
   }
 
   .add-book-modal__container {
-    max-height: 95vh;
+    height: 90vh;
+    height: 90dvh;
+    max-height: 90vh;
+    max-height: 90dvh;
     border-radius: var(--uix-design-system-radius-rd-4) var(--uix-design-system-radius-rd-4) 0 0;
+    box-sizing: border-box;
   }
 
   .add-book-modal__step {
     padding: var(--uix-design-system-spacing-sp-4);
+    overscroll-behavior: contain;
+    -webkit-overflow-scrolling: touch;
+    box-sizing: border-box;
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+
+  .add-book-modal__step--tagging {
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+
+  .add-book-modal__book-preview {
+    flex-wrap: nowrap;
+    min-width: 0;
+  }
+
+  .add-book-modal__shelves {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .add-book-modal__shelves button {
+    width: 100%;
+    box-sizing: border-box;
+    padding: var(--uix-design-system-spacing-sp-3) var(--uix-design-system-spacing-sp-4);
   }
 
   .add-book-modal__actions {

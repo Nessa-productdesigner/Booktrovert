@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { supabase } from '../../lib/supabase';
-import { getHighResCoverUrl } from '../../lib/utils';
 import type { BooktrovertBook } from '../../store/useOnboardingStore';
+import BookCover from '../ui/BookCover';
 import BookDetailModal from '../shelf/BookDetailModal';
 import './BookSearch.css';
 
@@ -62,33 +62,31 @@ export default function BookSearch({ onSelectBook, hideSubtitle, title, subtitle
 
   return (
     <div className="book-search">
-      {!hideSubtitle && title && (
-        <p className="book-search__subtitle">
-          {subtitle || 'Search for a book you\'ve read or stopped reading.'}
-        </p>
-      )}
+      <div className="book-search__sticky">
+        {!hideSubtitle && title && (
+          <p className="book-search__subtitle">
+            {subtitle || 'Search for a book you\'ve read or stopped reading.'}
+          </p>
+        )}
 
-      <div className="book-search__input-wrapper">
-        <input
-          type="text"
-          className="book-search__input"
-          placeholder="Title or Author..."
-          value={query}
-          onChange={(e) => setQuery(e.target.value)}
-        />
-        {loading && <div className="book-search__spinner" />}
+        <div className="book-search__input-wrapper">
+          <input
+            type="text"
+            className="book-search__input"
+            placeholder="Title or Author..."
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
+          />
+          {loading && <div className="book-search__spinner" />}
+        </div>
+
+        {error && <div className="book-search__error">{error}</div>}
       </div>
-
-      {error && <div className="book-search__error">{error}</div>}
 
       <div className="book-search__results">
         {results.length > 0 && results.map((book) => (
           <div key={book.book_id} className="book-search__result-item" onClick={() => onSelectBook(book)}>
-            {book.cover_url ? (
-              <img src={getHighResCoverUrl(book.cover_url)} alt={book.title} className="book-search__cover" />
-            ) : (
-              <div className="book-search__cover-placeholder">No Cover</div>
-            )}
+            <BookCover coverUrl={book.cover_url} title={book.title} className="book-search__cover" />
             <div className="book-search__info">
               <h3 className="book-search__book-title">{book.title}</h3>
               <p className="book-search__book-author">{book.author}</p>

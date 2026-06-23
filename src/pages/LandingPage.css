@@ -126,13 +126,13 @@
   gap: var(--uix-design-system-spacing-sp-2);
   padding: var(--uix-design-system-spacing-sp-2) var(--uix-design-system-spacing-sp-4);
   border-radius: 100px;
-  background: rgba(12, 140, 233, 0.08);
-  border: 1px solid rgba(12, 140, 233, 0.15);
+  background: transparent;
+  border: 1px solid var(--figma-ui3-bg-brand-secondary);
   font-family: var(--font-body);
   font-size: var(--typography-body-2-fontsize);
   font-weight: 500;
-  color: var(--figma-ui3-bg-brand);
-  margin-bottom: var(--uix-design-system-spacing-sp-8);
+  color: var(--figma-ui3-text-secondary);
+  margin-bottom: var(--uix-design-system-spacing-sp-7);
   animation: fadeInDown 0.8s ease-out;
   min-height: 44px;
 }
@@ -157,15 +157,12 @@
   font-weight: 600;
   line-height: 1.1;
   color: var(--figma-ui3-text);
-  margin: 0 0 24px;
+  margin: 0 0 20px;
   animation: fadeInUp 0.8s ease-out 0.2s both;
 }
 
 .landing__title-accent {
-  background: linear-gradient(135deg, var(--figma-ui3-bg-brand), var(--figma-ui3-bg-component));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  color: #6E3DF5;
 }
 
 /* --- Subtitle --- */
@@ -176,6 +173,7 @@
   color: var(--figma-ui3-text-secondary);
   margin: 0 0 24px;
   max-width: 480px;
+  text-wrap: pretty;
   animation: fadeInUp 0.8s ease-out 0.4s both;
 }
 
@@ -300,17 +298,47 @@
 }
 
 /* --- Responsive --- */
-@media (max-width: 480px) {
-  .landing__subtitle br {
+@media (max-width: 640px) {
+
+  .landing__shape--5,
+  .landing__shape--8,
+  .landing__shape--9 {
     display: none;
   }
 
-  .landing__shape--5 {
-    display: none;
+  .landing__shape {
+    font-size: 1.5rem;
   }
+
+  .landing__shape--1 { font-size: 2rem; top: 8%; left: 5%; }
+  .landing__shape--2 { font-size: 1.4rem; top: 15%; right: 8%; }
+  .landing__shape--3 { font-size: 1.2rem; bottom: 35%; left: 10%; }
+  .landing__shape--4 { font-size: 1.6rem; bottom: 10%; right: 5%; }
+  .landing__shape--6 { font-size: 1.3rem; top: 25%; right: 3%; }
+  .landing__shape--7 { font-size: 1.5rem; bottom: 50%; left: 3%; }
 
   .landing__content {
-    padding: var(--uix-design-system-spacing-sp-4) var(--uix-design-system-spacing-sp-3);
+    padding: var(--uix-design-system-spacing-sp-6) var(--uix-design-system-spacing-sp-4);
+  }
+
+  .landing__title {
+    font-size: clamp(2rem, 10vw, 2.8rem);
+  }
+
+  .landing__subtitle {
+    font-size: 15px;
+    padding: 0 var(--uix-design-system-spacing-sp-2);
+  }
+
+  .landing__badge {
+    font-size: 12px;
+    padding: var(--uix-design-system-spacing-sp-2) var(--uix-design-system-spacing-sp-3);
+  }
+
+  .landing__cta {
+    width: 100%;
+    justify-content: center;
+    padding: var(--uix-design-system-spacing-sp-3) var(--uix-design-system-spacing-sp-6);
   }
 
   .landing__tags {
@@ -319,6 +347,8 @@
   }
 
   .landing__tag {
+    font-size: 10px;
+    padding: var(--uix-design-system-spacing-sp-1) var(--uix-design-system-spacing-sp-2);
   }
 }
 

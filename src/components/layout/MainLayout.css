@@ -270,6 +270,14 @@
   .main-layout__content {
     padding-bottom: calc(60px + env(safe-area-inset-bottom));
   }
+
+  .main-layout__bottom-nav-link--active .main-layout__bottom-nav-icon {
+    color: var(--figma-ui3-text-brand);
+  }
+
+  .main-layout__header {
+    padding-top: env(safe-area-inset-top);
+  }
 }
 
 

@@ -28,21 +28,21 @@
 }
 
 .book-tagging__back-btn {
-  background: transparent;
+  background: #f5f5f5;
   border: none;
-  color: var(--figma-ui3-text-tertiary);
-  font-family: var(--typography-body-3-font-family);
-  font-size: var(--typography-body-3-fontsize);
   cursor: pointer;
-  padding: 0;
-  transition: color 0.2s ease;
-  min-height: 44px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
   display: flex;
   align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: background-color 0.2s ease;
 }
 
 .book-tagging__back-btn:hover {
-  color: var(--figma-ui3-text);
+  background: #e8e8e8;
 }
 
 .book-tagging__title {
@@ -213,6 +213,65 @@
   text-transform: none;
   font-weight: normal;
   margin-left: var(--uix-design-system-spacing-sp-1);
+}
+
+/* =========================================
+   MOBILE RESPONSIVE
+   ========================================= */
+
+@media (max-width: 768px) {
+  .book-tagging {
+    padding-bottom: calc(50px + env(safe-area-inset-bottom));
+  }
+
+  .book-tagging__book-info {
+    padding: var(--uix-design-system-spacing-sp-3);
+    gap: var(--uix-design-system-spacing-sp-3);
+  }
+
+  .book-tagging__cover, .book-tagging__cover-placeholder {
+    width: 50px;
+    height: 75px;
+  }
+
+  .book-tagging__details h3 {
+    font-size: 15px;
+  }
+
+  .book-tagging__details p {
+    font-size: 13px;
+  }
+
+  .book-tagging__dimension-header h4 {
+    font-size: 15px;
+  }
+
+  .book-tagging__pill {
+    padding: var(--uix-design-system-spacing-sp-2);
+    font-size: 14px;
+    min-height: 40px;
+  }
+
+  .book-tagging__options {
+    gap: var(--uix-design-system-spacing-sp-2);
+  }
+
+  .book-tagging__form {
+    gap: var(--uix-design-system-spacing-sp-5);
+  }
+
+  .book-tagging__save-btn {
+    width: 100%;
+    text-align: center;
+  }
+
+  .book-tagging__rating-section {
+    padding: var(--uix-design-system-spacing-sp-3);
+  }
+
+  .book-tagging__subtitle {
+    font-size: 16px;
+  }
 }
 
 

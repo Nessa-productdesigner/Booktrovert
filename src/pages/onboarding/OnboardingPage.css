@@ -75,6 +75,7 @@
   margin: 0;
   font-family: var(--typography-heading-4-font-family);
   font-size: var(--typography-heading-4-fontsize);
+  font-weight: 600;
   color: var(--figma-ui3-text);
 }
 
@@ -174,6 +175,37 @@
 @media (max-width: 768px) {
   .onboarding-page {
     padding: var(--uix-design-system-spacing-sp-6) var(--uix-design-system-spacing-sp-4);
+    padding-bottom: calc(var(--uix-design-system-spacing-sp-10) + env(safe-area-inset-bottom));
+  }
+
+  .onboarding-page__title {
+    font-size: 20px;
+  }
+
+  .onboarding-page__micro-copy {
+    font-size: 16px;
+  }
+
+  .onboarding-page__summary-item {
+    padding: var(--uix-design-system-spacing-sp-3);
+    gap: var(--uix-design-system-spacing-sp-2);
+  }
+
+  .onboarding-page__summary-info strong {
+    font-size: 14px;
+  }
+
+  .onboarding-page__summary-info span {
+    font-size: 12px;
+  }
+
+  .onboarding-page__finalize-btn {
+    font-size: 16px;
+    padding: var(--uix-design-system-spacing-sp-3);
+  }
+
+  .onboarding-page__subtitle {
+    font-size: 16px;
   }
 }
 

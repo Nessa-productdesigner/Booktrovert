@@ -41,23 +41,21 @@
 }
 
 /* =========================================
-   SHELF TABS — Horizontally scrollable
+   SHELF TABS — Pill buttons with scroll fade
    ========================================= */
 
 .shelf-page__tabs {
   display: flex;
-  gap: var(--uix-design-system-spacing-sp-5);
-  border-bottom: 1px solid var(--figma-ui3-border);
-  margin-bottom: var(--uix-design-system-spacing-sp-6);
+  gap: var(--uix-design-system-spacing-sp-3);
+  margin-bottom: 40px;
   overflow-x: auto;
-  padding-bottom: var(--uix-design-system-spacing-sp-1);
-  /* Scroll snap for smooth swiping */
-  scroll-snap-type: x mandatory;
+  padding: var(--uix-design-system-spacing-sp-1) 0;
   scroll-behavior: smooth;
   -webkit-overflow-scrolling: touch;
-  /* Hide scrollbar */
   -ms-overflow-style: none;
   scrollbar-width: none;
+  -webkit-mask-image: linear-gradient(to right, black calc(100% - 48px), transparent 100%);
+  mask-image: linear-gradient(to right, black calc(100% - 48px), transparent 100%);
 }
 
 .shelf-page__tabs::-webkit-scrollbar {
@@ -65,46 +63,51 @@
 }
 
 .shelf-page__tab {
-  background: transparent;
+  background-color: var(--figma-ui3-bg-secondary);
   border: none;
-  padding: var(--uix-design-system-spacing-sp-2) 0;
+  padding: var(--uix-design-system-spacing-sp-2) var(--uix-design-system-spacing-sp-4);
+  border-radius: 100px;
   font-family: var(--typography-title-6-font-family);
   font-size: var(--typography-title-6-fontsize);
   color: var(--figma-ui3-text-secondary);
   cursor: pointer;
-  position: relative;
   display: flex;
   align-items: center;
   gap: var(--uix-design-system-spacing-sp-2);
   white-space: nowrap;
-  transition: color 0.2s ease;
-  min-height: 44px;
-  scroll-snap-align: start;
+  transition: all 0.2s ease;
+  min-height: 36px;
   flex-shrink: 0;
 }
 
 .shelf-page__tab:hover {
+  background-color: var(--figma-ui3-bg-hover);
   color: var(--figma-ui3-text-brand);
 }
 
 .shelf-page__tab--active {
+  background-color: rgba(129, 90, 236, 0.12);
   color: var(--figma-ui3-text-brand);
   font-weight: 500;
+  border: 1px solid rgba(129, 90, 236, 0.5);
 }
 
-
+.shelf-page__tab--active:hover {
+  background-color: rgba(129, 90, 236, 0.18);
+}
 
 .shelf-page__tab-count {
-  background-color: var(--figma-ui3-bg-secondary);
-  color: var(--figma-ui3-text-tertiary);
+  background-color: rgba(0, 0, 0, 0.08);
+  color: inherit;
   font-size: 11px;
   padding: 2px 6px;
   border-radius: 10px;
+  opacity: 0.7;
 }
 
 .shelf-page__tab--active .shelf-page__tab-count {
-  background-color: var(--figma-ui3-bg-brand-tertiary);
-  color: var(--figma-ui3-text-brand);
+  background-color: rgba(129, 90, 236, 0.2);
+  color: var(--figma-ui3-bg-brand-hover);
 }
 
 /* =========================================
@@ -182,6 +185,7 @@
 .shelf-page__book-info {
   display: flex;
   flex-direction: column;
+  gap: 8px;
 }
 
 .shelf-page__book-title {
@@ -192,16 +196,174 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  min-width: 0;
+  flex: 1;
+  line-height: 1.2;
+  padding-right: 28px;
 }
 
 .shelf-page__book-author {
-  margin: 2px 0 0 0;
+  margin: 0;
   font-family: var(--typography-body-4-font-family);
   font-size: 14px;
   color: var(--figma-ui3-text-secondary);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  line-height: 1.2;
+}
+
+.shelf-page__book-title-row {
+  display: flex;
+  align-items: center;
+  gap: var(--uix-design-system-spacing-sp-1);
+  position: relative;
+}
+
+.shelf-page__menu-btn {
+  background: transparent;
+  border: none;
+  padding: 0 2px;
+  color: var(--figma-ui3-text);
+  cursor: pointer;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1;
+  min-height: 32px;
+  min-width: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--uix-design-system-radius-rd-1);
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.shelf-page__menu-btn:hover {
+  color: var(--figma-ui3-text);
+  background-color: var(--figma-ui3-bg-hover);
+}
+
+.shelf-page__dropdown {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  z-index: 50;
+  background-color: var(--figma-ui3-bg);
+  border: 1px solid var(--figma-ui3-border);
+  border-radius: var(--uix-design-system-radius-rd-2);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
+  min-width: 180px;
+  overflow: visible;
+}
+
+.shelf-page__dropdown-item {
+  width: 100%;
+  background: transparent;
+  border: none;
+  padding: var(--uix-design-system-spacing-sp-3) var(--uix-design-system-spacing-sp-4);
+  font-family: var(--typography-body-3-font-family);
+  font-size: 14px;
+  cursor: pointer;
+  text-align: left;
+  transition: background-color 0.15s ease;
+  min-height: 44px;
+  white-space: nowrap;
+}
+
+.shelf-page__dropdown-item--default {
+  color: var(--figma-ui3-text);
+}
+
+.shelf-page__dropdown-item--default:hover {
+  background-color: var(--figma-ui3-bg-hover);
+}
+
+.shelf-page__dropdown-item:not(.shelf-page__dropdown-item--default) {
+  color: var(--figma-ui3-text-danger);
+}
+
+.shelf-page__dropdown-item:not(.shelf-page__dropdown-item--default):hover {
+  background-color: var(--figma-ui3-bg-danger-tertiary);
+}
+
+/* Confirmation dialog */
+
+.shelf-page__confirm-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 300;
+  padding: var(--uix-design-system-spacing-sp-4);
+}
+
+.shelf-page__confirm-dialog {
+  background: var(--figma-ui3-bg);
+  border-radius: var(--uix-design-system-radius-rd-3);
+  padding: var(--uix-design-system-spacing-sp-6);
+  max-width: 360px;
+  width: 100%;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2);
+}
+
+.shelf-page__confirm-text {
+  margin: 0 0 var(--uix-design-system-spacing-sp-6) 0;
+  font-family: var(--typography-body-2-font-family);
+  font-size: 16px;
+  color: var(--figma-ui3-text);
+  text-align: center;
+  line-height: 1.4;
+}
+
+.shelf-page__confirm-actions {
+  display: flex;
+  gap: var(--uix-design-system-spacing-sp-3);
+}
+
+.shelf-page__confirm-cancel,
+.shelf-page__confirm-delete {
+  flex: 1;
+  padding: var(--uix-design-system-spacing-sp-3);
+  border-radius: var(--uix-design-system-radius-rd-2);
+  font-family: var(--typography-body-3-font-family);
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  min-height: 44px;
+  transition: all 0.2s ease;
+}
+
+.shelf-page__confirm-cancel {
+  background: transparent;
+  border: 1px solid var(--figma-ui3-border);
+  color: var(--figma-ui3-text);
+}
+
+.shelf-page__confirm-cancel:hover {
+  background: var(--figma-ui3-bg-hover);
+}
+
+.shelf-page__confirm-delete {
+  background: var(--figma-ui3-bg-danger);
+  border: none;
+  color: var(--figma-ui3-text-onbrand);
+}
+
+.shelf-page__confirm-delete:hover {
+  background: var(--figma-ui3-bg-danger-hover);
+}
+
+.shelf-page__confirm-delete:disabled,
+.shelf-page__confirm-cancel:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
 }
 
 .shelf-page__tags-preview {
@@ -254,24 +416,8 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-top: auto;
-  padding-top: var(--uix-design-system-spacing-sp-2);
-}
-
-.shelf-page__share-btn {
-  background: transparent;
-  border: none;
-  padding: var(--uix-design-system-spacing-sp-1);
-  color: var(--figma-ui3-text-secondary);
-  cursor: pointer;
-  transition: all 0.2s ease;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.shelf-page__share-btn:hover {
-  color: var(--figma-ui3-text-brand);
+  margin-top: 0;
+  padding-top: 0;
 }
 
 .shelf-page__share-overlay {
@@ -368,6 +514,7 @@
 @media (max-width: 768px) {
   .shelf-page {
     padding: var(--uix-design-system-spacing-sp-4);
+    overflow: hidden;
   }
 
   .shelf-page__header {
@@ -375,23 +522,89 @@
   }
 
   .shelf-page__tabs {
-    gap: var(--uix-design-system-spacing-sp-3);
-    margin-bottom: var(--uix-design-system-spacing-sp-4);
-    /* Scroll padding so first/last tabs aren't flush against edge */
-    scroll-padding-left: var(--uix-design-system-spacing-sp-2);
+    gap: var(--uix-design-system-spacing-sp-2);
+    margin-bottom: 24px;
+    padding-left: var(--uix-design-system-spacing-sp-1);
+    margin-left: calc(-1 * var(--uix-design-system-spacing-sp-4));
+    margin-right: calc(-1 * var(--uix-design-system-spacing-sp-4));
+    padding-right: var(--uix-design-system-spacing-sp-4);
+    position: relative;
+    -webkit-mask-image: linear-gradient(to right, black calc(100% - 40px), transparent 100%);
+    mask-image: linear-gradient(to right, black calc(100% - 40px), transparent 100%);
   }
 
   .shelf-page__tab {
+    font-size: 14px;
+    padding: var(--uix-design-system-spacing-sp-1) var(--uix-design-system-spacing-sp-3);
+    min-height: 34px;
+  }
+
+  .shelf-page__grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    overflow: visible;
+  }
+
+  .shelf-page__book-card {
+    width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
+  }
+
+  .shelf-page__book-cover-wrapper {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    aspect-ratio: 2 / 3;
   }
 
   .shelf-page__book-title {
+    font-size: 16px;
+    padding-right: 44px;
+  }
+
+  .shelf-page__menu-btn {
+    font-size: 22px;
+    min-width: 44px;
+    min-height: 44px;
+    color: var(--figma-ui3-text);
   }
 
   .shelf-page__book-author {
+    font-size: 14px;
+  }
+
+  .shelf-page__book-info {
+    width: 100%;
+    min-width: 0;
   }
 
   .shelf-page__share-field {
     flex-direction: column;
+  }
+
+  .shelf-page__empty p {
+    font-size: 15px;
+  }
+
+  .shelf-page__empty-sub {
+    font-size: 13px;
+  }
+
+  .shelf-page__header {
+    flex-wrap: wrap;
+  }
+
+  .shelf-page__title {
+    font-size: 22px;
+  }
+
+  .shelf-page__add-btn {
+    font-size: 14px;
+    padding: var(--uix-design-system-spacing-sp-2) var(--uix-design-system-spacing-sp-3);
   }
 }
 

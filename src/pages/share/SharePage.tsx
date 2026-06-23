@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { supabase } from '../../lib/supabase';
-import { getHighResCoverUrl } from '../../lib/utils';
+import BookCover from '../../components/ui/BookCover';
 import './SharePage.css';
 
 interface SharedData {
@@ -104,11 +104,7 @@ export default function SharePage() {
 
         <div className="share-page__book">
           <div className="share-page__cover-wrapper">
-            {data.cover_url ? (
-              <img src={getHighResCoverUrl(data.cover_url)} alt={data.title} className="share-page__cover" />
-            ) : (
-              <div className="share-page__cover-placeholder">No Cover</div>
-            )}
+            <BookCover coverUrl={data.cover_url} title={data.title} className="share-page__cover" />
           </div>
           <div className="share-page__info">
             <h1 className="share-page__title">{data.title}</h1>

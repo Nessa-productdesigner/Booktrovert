@@ -45,6 +45,8 @@
     --figma-ui3-text-hover: #0a0a0a;
     --figma-ui3-text-disabled: #a3a3a3;
     --figma-ui3-text-oninverse: #ffffff;
+    --figma-ui3-text-danger: #FF2524;
+    --figma-ui3-bg-danger-tertiary: #FFE9E9;
 
     /* Icons */
     --figma-ui3-icon: #1a1a1a;
@@ -274,16 +276,20 @@
     background-color: var(--color-surface);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
   }
 
   body {
     margin: 0;
     min-height: 100vh;
+    overflow-x: hidden;
   }
 
   h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-heading);
   }
 }
+
+
 
 

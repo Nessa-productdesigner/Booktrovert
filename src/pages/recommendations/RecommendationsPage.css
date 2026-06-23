@@ -32,19 +32,23 @@
 
 .recs-page__refresh-btn {
   align-self: flex-end;
-  background-color: var(--figma-ui3-bg-secondary);
-  color: var(--figma-ui3-text);
-  border: 1px solid var(--figma-ui3-border);
-  padding: var(--uix-design-system-spacing-sp-2) var(--uix-design-system-spacing-sp-4);
+  background: transparent;
+  color: var(--figma-ui3-text-brand);
+  border: 1px solid var(--figma-ui3-text-brand);
+  padding: var(--uix-design-system-spacing-sp-2) 24px;
   border-radius: var(--uix-design-system-radius-rd-2);
   font-family: var(--typography-body-4-font-family);
   cursor: pointer;
   transition: all 0.2s ease;
   min-height: 44px;
+  width: auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .recs-page__refresh-btn:hover:not(:disabled) {
-  background-color: var(--figma-ui3-bg-hover);
+  background-color: var(--figma-ui3-bg-brand-tertiary);
 }
 
 .recs-page__refresh-btn:disabled {
@@ -76,7 +80,8 @@
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
-.recs-page__card-cover img {
+.recs-page__card-cover img,
+.recs-page__card-cover > div {
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -271,6 +276,10 @@
     margin-bottom: var(--uix-design-system-spacing-sp-5);
   }
 
+  .recs-page__title {
+    font-size: 22px;
+  }
+
   .recs-page__card {
     flex-direction: column;
     padding: var(--uix-design-system-spacing-sp-4);
@@ -283,15 +292,22 @@
   }
 
   .recs-page__card-info {
-    text-align: center;
+    text-align: left;
   }
 
   .recs-page__card-tags {
-    justify-content: center;
+    justify-content: flex-start;
+  }
+
+  .recs-page__card-title {
+    font-size: 20px;
+    font-weight: 500;
   }
 
   .recs-page__card-reason {
     text-align: left;
+    padding-left: 12px;
+    padding-right: var(--uix-design-system-spacing-sp-3);
   }
 
   .recs-page__card-actions {
@@ -306,8 +322,7 @@
   }
 
   .recs-page__refresh-btn {
-    align-self: stretch;
-    text-align: center;
+    align-self: flex-end;
   }
 }
 

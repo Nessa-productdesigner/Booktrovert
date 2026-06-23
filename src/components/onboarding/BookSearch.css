@@ -1,10 +1,12 @@
 .book-search {
   display: flex;
   flex-direction: column;
-  gap: var(--uix-design-system-spacing-sp-4);
   width: 100%;
   max-width: 600px;
   margin: 0 auto;
+  min-height: 0;
+  flex: 1;
+  box-sizing: border-box;
 }
 
 .book-search__title {
@@ -14,6 +16,12 @@
   color: var(--figma-ui3-text);
   margin: 0;
   text-align: center;
+}
+
+.book-search__sticky {
+  display: flex;
+  flex-direction: column;
+  gap: var(--uix-design-system-spacing-sp-4);
 }
 
 .book-search__subtitle {
@@ -28,6 +36,8 @@
   position: relative;
   display: flex;
   align-items: center;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .book-search__input {
@@ -39,9 +49,11 @@
   border-radius: var(--uix-design-system-radius-rd-2);
   color: var(--figma-ui3-text);
   font-family: var(--typography-body-3-font-family);
-  font-size: var(--typography-body-3-fontsize);
+  font-size: 16px; /* 16px prevents iOS auto-zoom */
   transition: all 0.2s ease;
   min-height: 44px;
+  box-sizing: border-box;
+  width: 100%;
 }
 
 .book-search__input:focus {
@@ -121,7 +133,9 @@
 
 .book-search__info {
   flex: 1;
-  min-width: 0; /* allows text truncation */
+  min-width: 0;
+  box-sizing: border-box;
+  overflow: hidden;
 }
 
 .book-search__book-title {
@@ -155,6 +169,8 @@
   white-space: nowrap;
   opacity: 0;
   visibility: hidden;
+  width: 76px;
+  flex-shrink: 0;
 }
 
 .book-search__result-item:hover .book-search__select-btn {
@@ -176,13 +192,60 @@
    MOBILE RESPONSIVE
    ========================================= */
 
-@media (max-width: 480px) {
+@media (max-width: 768px) {
+  .book-search {
+    width: 100%;
+    box-sizing: border-box;
+    max-width: 100%;
+  }
+
+  .book-search__sticky {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background: var(--figma-ui3-bg);
+    padding-bottom: var(--uix-design-system-spacing-sp-2);
+    width: 100%;
+    box-sizing: border-box;
+  }
+
   .book-search__result-item {
     gap: var(--uix-design-system-spacing-sp-3);
+    padding: var(--uix-design-system-spacing-sp-3);
+    width: 100%;
+    box-sizing: border-box;
+    max-width: 100%;
   }
 
   .book-search__select-btn {
-    padding: var(--uix-design-system-spacing-sp-2);
+    opacity: 1;
+    visibility: visible;
+    padding: var(--uix-design-system-spacing-sp-2) var(--uix-design-system-spacing-sp-3);
+    min-height: 44px;
+    background-color: var(--figma-ui3-bg-brand);
+    color: var(--figma-ui3-text-onbrand);
+    flex-shrink: 0;
+    width: 76px;
+  }
+
+  .book-search__cover, .book-search__cover-placeholder {
+    width: 44px;
+    height: 66px;
+    flex-shrink: 0;
+  }
+
+  .book-search__book-title {
+    font-size: 15px;
+  }
+
+  .book-search__book-author {
+    font-size: 13px;
+  }
+
+  .book-search__results {
+    width: 100%;
+    box-sizing: border-box;
+    max-width: 100%;
   }
 }
 

@@ -1,7 +1,7 @@
 import { useState, useMemo } from 'react';
 import type { BooktrovertBook, ContextTags } from '../../store/useOnboardingStore';
-import { getHighResCoverUrl } from '../../lib/utils';
 import StarRating from '../ui/StarRating';
+import BookCover from '../ui/BookCover';
 import './BookTagging.css';
 
 interface BookTaggingProps {
@@ -82,7 +82,11 @@ export default function BookTagging({ book, onSaveTags, onCancel, hideBackButton
       <div className="book-tagging__header">
         <div className="book-tagging__title-row">
           {!hideBackButton && (
-            <button className="book-tagging__back-btn" onClick={onCancel}>← Back</button>
+            <button className="book-tagging__back-btn" onClick={onCancel} aria-label="Back">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#1a1a1a" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <polyline points="15 18 9 12 15 6"></polyline>
+              </svg>
+            </button>
           )}
           <h2 className="book-tagging__title">Tag this book</h2>
         </div>
@@ -90,11 +94,7 @@ export default function BookTagging({ book, onSaveTags, onCancel, hideBackButton
       </div>
 
       <div className="book-tagging__book-info">
-        {book.cover_url ? (
-          <img src={getHighResCoverUrl(book.cover_url)} alt={book.title} className="book-tagging__cover" />
-        ) : (
-          <div className="book-tagging__cover-placeholder">No Cover</div>
-        )}
+        <BookCover coverUrl={book.cover_url} title={book.title} className="book-tagging__cover" />
         <div className="book-tagging__details">
           <h3>{book.title}</h3>
           <p>{book.author}</p>

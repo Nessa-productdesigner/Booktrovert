@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { supabase } from '../../lib/supabase';
-import { getHighResCoverUrl } from '../../lib/utils';
 import StarRating from '../ui/StarRating';
+import BookCover from '../ui/BookCover';
 import { useAuthStore } from '../../store/useAuthStore';
 import type { BooktrovertBook } from '../../store/useOnboardingStore';
 import { ensureBookExists, EMPTY_TAGS, type ShelfType } from '../../lib/db';
@@ -24,14 +24,15 @@ export default function BookDetailModal({ book, onClose, onRequestTagging, hideS
 
   // Fetch current shelf status
   useEffect(() => {
-    if (!user || !book.book_id) return;
+    const bookId = book.book_id || (book as any).id;
+    if (!user || !bookId) return;
     
     const fetchShelf = async () => {
       const { data } = await supabase
         .from('userbooks')
         .select('shelf, rating')
         .eq('user_id', user.id)
-        .eq('book_id', book.book_id)
+        .eq('book_id', bookId)
         .maybeSingle();
         
       if (data) {
@@ -40,7 +41,7 @@ export default function BookDetailModal({ book, onClose, onRequestTagging, hideS
       }
     };
     fetchShelf();
-  }, [user, book.book_id]);
+  }, [user, book.book_id, (book as any).id]);
 
   const handleShelfChange = async (e: React.ChangeEvent<HTMLSelectElement>) => {
     const newShelf = e.target.value as ShelfType | '';
@@ -58,6 +59,7 @@ export default function BookDetailModal({ book, onClose, onRequestTagging, hideS
     const oldShelf = currentShelf;
     setCurrentShelf(newShelf);
     
+    const bookId = book.book_id || (book as any).id;
     try {
       await ensureBookExists(book);
 
@@ -65,7 +67,7 @@ export default function BookDetailModal({ book, onClose, onRequestTagging, hideS
         .from('userbooks')
         .select('userbook_id')
         .eq('user_id', user.id)
-        .eq('book_id', book.book_id)
+        .eq('book_id', bookId)
         .maybeSingle();
         
       if (existingUserBook) {
@@ -73,7 +75,7 @@ export default function BookDetailModal({ book, onClose, onRequestTagging, hideS
       } else {
         await supabase.from('userbooks').insert({
           user_id: user.id,
-          book_id: book.book_id,
+          book_id: bookId,
           shelf: newShelf,
           context_tags: EMPTY_TAGS
         });
@@ -91,14 +93,15 @@ export default function BookDetailModal({ book, onClose, onRequestTagging, hideS
   };
 
   const handleRatingChange = async (newRating: number) => {
-    if (!user || !book.book_id) return;
+    const bookId = book.book_id || (book as any).id;
+    if (!user || !bookId) return;
     setCurrentRating(newRating);
     try {
       await supabase
         .from('userbooks')
         .update({ rating: newRating })
         .eq('user_id', user.id)
-        .eq('book_id', book.book_id);
+        .eq('book_id', bookId);
     } catch (error) {
       console.error("Failed to save rating:", error);
     }
@@ -215,15 +218,7 @@ export default function BookDetailModal({ book, onClose, onRequestTagging, hideS
           <div className="book-detail-modal__book-display">
             <div className="book-detail-modal__left-column">
               <div className="book-detail-modal__cover-wrapper">
-                {book.cover_url ? (
-                  <img 
-                    src={getHighResCoverUrl(book.cover_url)} 
-                    alt={book.title} 
-                    className="book-detail-modal__cover" 
-                  />
-                ) : (
-                  <div className="book-detail-modal__cover-placeholder">No Cover</div>
-                )}
+                <BookCover coverUrl={book.cover_url} title={book.title} className="book-detail-modal__cover" />
               </div>
               
               {!hideShelfSelect && (

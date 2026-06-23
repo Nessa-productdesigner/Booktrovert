@@ -2,8 +2,9 @@
   position: fixed;
   top: 0;
   left: 0;
-  width: 100vw;
+  right: 0;
   height: 100vh;
+  height: 100dvh;
   background-color: rgba(0, 0, 0, 0.5);
   display: flex;
   align-items: center;
@@ -11,6 +12,7 @@
   z-index: 1000;
   padding: var(--uix-design-system-spacing-sp-4);
   backdrop-filter: blur(4px);
+  box-sizing: border-box;
 }
 
 .share-modal__content {
@@ -58,7 +60,7 @@
 
 .share-modal__error {
   color: var(--figma-ui3-text-danger);
-  background-color: var(--figma-ui3-bg-danger);
+  background-color: #FFE9E9;
   padding: var(--uix-design-system-spacing-sp-3);
   border-radius: var(--uix-design-system-radius-rd-2);
   margin-bottom: var(--uix-design-system-spacing-sp-4);

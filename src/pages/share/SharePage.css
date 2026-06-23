@@ -205,28 +205,61 @@
    MOBILE RESPONSIVE
    ========================================= */
 
-@media (max-width: 480px) {
+@media (max-width: 640px) {
   .share-page {
     padding: var(--uix-design-system-spacing-sp-4);
     align-items: flex-start;
     padding-top: var(--uix-design-system-spacing-sp-10);
+    padding-bottom: calc(var(--uix-design-system-spacing-sp-10) + env(safe-area-inset-bottom));
   }
 
   .share-page__book {
     gap: var(--uix-design-system-spacing-sp-3);
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
   }
 
   .share-page__cover-wrapper {
     width: 100px;
   }
 
+  .share-page__title {
+    font-size: 20px;
+  }
+
+  .share-page__author {
+    font-size: 15px;
+  }
+
   .share-page__tags {
     padding: var(--uix-design-system-spacing-sp-4);
+  }
+
+  .share-page__badge {
+    font-size: 11px;
   }
 
   .share-page__cta {
     width: 100%;
     text-align: center;
+  }
+
+  .share-page__card {
+    max-width: 100%;
+  }
+
+  .share-page__cover-wrapper {
+    width: 110px;
+  }
+
+  .share-page__dimension-tags {
+    gap: 4px;
+  }
+
+  .share-page__tag {
+    font-size: 11px;
+    padding: 2px 8px;
   }
 }
 

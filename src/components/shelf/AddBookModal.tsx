@@ -6,7 +6,7 @@ import { ensureBookExists, EMPTY_TAGS, type ShelfType } from '../../lib/db';
 import BookSearch from '../onboarding/BookSearch';
 import BookTagging from '../onboarding/BookTagging';
 import BookDetailModal from './BookDetailModal';
-import { getHighResCoverUrl } from '../../lib/utils';
+import BookCover from '../ui/BookCover';
 import './AddBookModal.css';
 
 interface AddBookModalProps {
@@ -116,11 +116,7 @@ export default function AddBookModal({ onClose, onBookAdded, initialBook, initia
           <div className="add-book-modal__step">
             <h2 className="add-book-modal__title">Choose a Shelf</h2>
             <div className="add-book-modal__book-preview">
-              {selectedBook.cover_url ? (
-                <img src={getHighResCoverUrl(selectedBook.cover_url)} alt={selectedBook.title} />
-              ) : (
-                <div className="add-book-modal__preview-placeholder">No Cover</div>
-              )}
+              <BookCover coverUrl={selectedBook.cover_url} title={selectedBook.title} />
               <div>
                 <h3>{selectedBook.title}</h3>
                 <p>{selectedBook.author}</p>
