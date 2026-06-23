@@ -233,7 +233,7 @@ export default function RecommendationsPage() {
           book={{ ...selectedBookForDetail, book_id: selectedBookForDetail.book_id || selectedBookForDetail.id || '', source: 'api' }} 
           onClose={() => setSelectedBookForDetail(null)} 
           onRequestTagging={(book) => {
-            const existing = recommendations.find(r => (r.book.book_id || r.book.id) === (book.book_id || book.id));
+            const existing = recommendations.find(r => (r.book.book_id || r.book.id) === book.book_id);
             if (!existing) return;
             setSelectedRecForShelf({
               ...existing,
