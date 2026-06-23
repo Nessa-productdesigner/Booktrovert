@@ -60,7 +60,7 @@
 .auth-form__label {
   font-size: 14px;
   color: var(--color-text-secondary);
-  font-weight: 600;
+  font-weight: 500;
 }
 
 .auth-form__input {
@@ -172,6 +172,15 @@
   font-size: var(--font-size-caption);
   color: var(--color-text-secondary);
   line-height: 1.4;
+}
+
+.auth-form__coppa-link {
+  color: var(--color-text-secondary);
+  text-decoration: underline;
+}
+
+.auth-form__coppa-link:hover {
+  color: var(--color-text);
 }
 
 .auth-form__hint {

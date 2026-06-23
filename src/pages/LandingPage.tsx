@@ -33,7 +33,7 @@ export default function LandingPage() {
         </h1>
 
         <p className="landing__subtitle">
-          Track your books, tag what made them<br />unforgettable, and get recommendations that actually gets you.
+          Track your books, tag what made them unforgettable,<br />and get recommendations that actually gets you.
         </p>
 
         <button

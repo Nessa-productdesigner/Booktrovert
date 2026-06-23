@@ -7,7 +7,7 @@ type AuthMode = 'login' | 'signup';
 
 export default function AuthPage() {
   const [searchParams, setSearchParams] = useSearchParams();
-  const mode = (searchParams.get('mode') as AuthMode) || 'login';
+  const mode = (searchParams.get('mode') as AuthMode) || 'signup';
 
   const [email, setEmail] = useState('');
   const [emailTouched, setEmailTouched] = useState(false);
@@ -96,7 +96,7 @@ export default function AuthPage() {
     <AuthLayout title={title} subtitle={subtitle} showLogo={false}>
       {error && <div className="auth-form__error">{error}</div>}
 
-      <form className="auth-form" onSubmit={isLogin ? handleLogin : handleSignup}>
+      <form className="auth-form" onSubmit={isLogin ? handleLogin : handleSignup} noValidate>
         <div className="auth-form__group">
           <label className="auth-form__label" htmlFor="email">{isLogin ? 'Email address' : 'Enter email address'}</label>
           <input
@@ -142,7 +142,7 @@ export default function AuthPage() {
               required
             />
             <label htmlFor="coppa" className="auth-form__checkbox-label">
-              I confirm I am 13 years of age or older, in compliance with COPPA regulations.
+              I confirm I am 13 years of age or older, in compliance with{' '}<a href="https://www.ftc.gov/legal-library/browse/rules/childrens-online-privacy-protection-rule-coppa" target="_blank" rel="noopener noreferrer" className="auth-form__coppa-link">COPPA</a> regulations.
             </label>
           </div>
         )}
@@ -150,7 +150,7 @@ export default function AuthPage() {
         <button
           type="submit"
           className="auth-form__button"
-          disabled={loading || (!isLogin && !is13OrOlder)}
+          disabled={loading || (isLogin ? !isValidEmail || !password : !isValidEmail || password.length < 8)}
         >
           {loading
             ? (isLogin ? 'Logging in...' : 'Creating account...')

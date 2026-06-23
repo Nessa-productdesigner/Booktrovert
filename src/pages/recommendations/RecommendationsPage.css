@@ -108,7 +108,7 @@
 .recs-page__card-title {
   margin: 0;
   font-family: var(--typography-title-4-font-family);
-  font-size: var(--typography-title-4-fontsize);
+  font-size: 20px;
   color: var(--figma-ui3-text);
   line-height: 1.2;
 }
