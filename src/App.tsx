@@ -8,6 +8,7 @@ import MainLayout from './components/layout/MainLayout';
 import ShelfPage from './pages/shelf/ShelfPage';
 import RecommendationsPage from './pages/recommendations/RecommendationsPage';
 import SharePage from './pages/share/SharePage';
+import NotFoundPage from './pages/NotFoundPage';
 
 function App() {
   return (
@@ -40,6 +41,9 @@ function App() {
             <Route path="/shelf" element={<ShelfPage />} />
             <Route path="/recommendations" element={<RecommendationsPage />} />
           </Route>
+
+          {/* 404 Catch-all */}
+          <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </BrowserRouter>
     </AuthProvider>

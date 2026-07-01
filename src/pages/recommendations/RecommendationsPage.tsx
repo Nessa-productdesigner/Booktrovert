@@ -97,7 +97,7 @@ export default function RecommendationsPage() {
       const { error: dismissError } = await supabase
         .from('recommendations')
         .update({ status: 'dismissed' })
-        .eq('id', recIdParam);
+        .eq('rec_id', recIdParam);
         
       if (dismissError) throw dismissError;
     } catch (err) {
@@ -129,7 +129,7 @@ export default function RecommendationsPage() {
       await supabase
         .from('recommendations')
         .update({ status: 'saved' })
-        .eq('id', recId);
+        .eq('rec_id', recId);
         
       // Remove from list and clear modal
       setRecommendations(prev => prev.filter(r => (r.rec_id || r.id) !== recId));

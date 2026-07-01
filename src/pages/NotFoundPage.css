@@ -1,0 +1,83 @@
+.not-found {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: var(--figma-ui3-bg);
+  padding: var(--uix-design-system-spacing-sp-6);
+}
+
+.not-found__brand {
+  margin-bottom: auto;
+}
+
+.not-found__logo {
+  font-family: var(--typography-heading-1-font-family, 'Comic Sans MS', cursive);
+  font-size: var(--typography-heading-4-font-size, 24px);
+  color: var(--figma-ui3-text-brand);
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.not-found__content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  max-width: 400px;
+  margin: 0 auto;
+  margin-bottom: auto;
+}
+
+.not-found__icon {
+  font-size: 64px;
+  margin-bottom: var(--uix-design-system-spacing-sp-4);
+  animation: float 3s ease-in-out infinite;
+}
+
+.not-found__title {
+  font-family: var(--typography-heading-1-font-family, 'Comic Sans MS', cursive);
+  font-size: var(--typography-heading-3-font-size, 28px);
+  color: var(--figma-ui3-text);
+  margin-bottom: var(--uix-design-system-spacing-sp-2);
+}
+
+.not-found__subtitle {
+  font-family: var(--typography-body-1-font-family, 'Mulish', sans-serif);
+  font-size: var(--typography-body-3-font-size, 16px);
+  color: var(--figma-ui3-text);
+  opacity: 0.8;
+  margin-bottom: var(--uix-design-system-spacing-sp-6);
+}
+
+.not-found__cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--figma-ui3-bg-brand);
+  color: #ffffff;
+  font-family: var(--typography-body-1-font-family, 'Mulish', sans-serif);
+  font-weight: 600;
+  padding: var(--uix-design-system-spacing-sp-3) var(--uix-design-system-spacing-sp-6);
+  border-radius: var(--uix-design-system-radius-rd-6, 24px);
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.not-found__cta:hover {
+  background-color: var(--figma-ui3-bg-brand-hover, #6b1fe0);
+  transform: translateY(-2px);
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}

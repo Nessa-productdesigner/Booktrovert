@@ -19,7 +19,7 @@ interface AddBookModalProps {
 export default function AddBookModal({ onClose, onBookAdded, initialBook, initialShelf }: AddBookModalProps) {
   const { user } = useAuthStore();
   const [step, setStep] = useState<1 | 2 | 3>(
-    initialBook && (initialShelf === 'read' || initialShelf === 'did_not_finish') ? 3 :
+    initialBook && (initialShelf === 'read' || initialShelf === 'rereading' || initialShelf === 'did_not_finish') ? 3 :
       initialBook ? 2 : 1
   );
   const [selectedBook, setSelectedBook] = useState<BooktrovertBook | null>(initialBook || null);
@@ -36,7 +36,7 @@ export default function AddBookModal({ onClose, onBookAdded, initialBook, initia
   const handleShelfSelect = async (shelf: ShelfType) => {
     setSelectedShelf(shelf);
 
-    if (shelf === 'read' || shelf === 'did_not_finish') {
+    if (shelf === 'read' || shelf === 'rereading' || shelf === 'did_not_finish') {
       setStep(3);
     } else {
       await saveBook(shelf, EMPTY_TAGS);
