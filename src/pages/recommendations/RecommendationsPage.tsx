@@ -31,6 +31,16 @@ export default function RecommendationsPage() {
   
   const [selectedRecForShelf, setSelectedRecForShelf] = useState<Recommendation | null>(null);
   const [selectedBookForDetail, setSelectedBookForDetail] = useState<Recommendation['book'] | null>(null);
+  const [expandedSynopses, setExpandedSynopses] = useState<Set<string>>(new Set());
+
+  const toggleSynopsis = (recId: string, e: React.MouseEvent) => {
+    e.stopPropagation();
+    setExpandedSynopses(prev => {
+      const next = new Set(prev);
+      if (next.has(recId)) { next.delete(recId); } else { next.add(recId); }
+      return next;
+    });
+  };
 
   const fetchRecs = useCallback(async () => {
     if (!user) return [];
@@ -178,6 +188,20 @@ export default function RecommendationsPage() {
                         <span key={tag} className="recs-page__card-tag-pill">{tag}</span>
                       ))}
                     </div>
+
+                    {rec.book.synopsis && (
+                      <div className="recs-page__card-synopsis">
+                        <p className={`recs-page__card-synopsis-text ${expandedSynopses.has(recId) ? 'recs-page__card-synopsis-text--expanded' : ''}`}>
+                          {rec.book.synopsis.replace(/<[^>]*>/g, '').trim()}
+                        </p>
+                        <button
+                          className="recs-page__card-synopsis-toggle"
+                          onClick={(e) => toggleSynopsis(recId, e)}
+                        >
+                          {expandedSynopses.has(recId) ? 'Show less' : 'Read more'}
+                        </button>
+                      </div>
+                    )}
                     
                     <div className="recs-page__card-actions">
                       <button className="recs-page__btn-save" onClick={(e) => { e.stopPropagation(); handleSaveToShelf(rec); }}>

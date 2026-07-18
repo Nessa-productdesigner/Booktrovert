@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { supabase } from '../../lib/supabase';
 import type { BooktrovertBook } from '../../store/useOnboardingStore';
 import BookCover from '../ui/BookCover';
@@ -18,42 +18,82 @@ export default function BookSearch({ onSelectBook, hideSubtitle, title, subtitle
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [selectedBookForDetail, setSelectedBookForDetail] = useState<BooktrovertBook | null>(null);
+  const activeQueryRef = useRef('');
 
   const executeSearch = async (searchQuery: string) => {
-    if (!searchQuery.trim() || searchQuery.length < 5) {
+    const trimmed = searchQuery.trim();
+    if (!trimmed || trimmed.length <= 1) {
       setResults([]);
       return;
     }
 
+    activeQueryRef.current = searchQuery;
     setLoading(true);
     setError(null);
+    setResults([]);
 
     try {
       const { data, error: invokeError } = await supabase.functions.invoke('book-search', {
         body: { q: searchQuery }
       });
 
-      if (invokeError) throw invokeError;
-      
+      if (activeQueryRef.current !== searchQuery) return;
+
+      if (invokeError) {
+        let msg = 'Something went wrong while searching. Please try again.';
+        // If it is a Supabase FunctionsHttpError, we can extract the JSON payload
+        if ((invokeError as any).context) {
+          try {
+            const bodyText = await (invokeError as any).context.text();
+            const parsedBody = JSON.parse(bodyText);
+            if (parsedBody && parsedBody.error) {
+              msg = parsedBody.error;
+            }
+          } catch (e) {
+            if (invokeError.message) {
+              msg = invokeError.message;
+            }
+          }
+        } else if (invokeError.message) {
+          msg = invokeError.message;
+        }
+        throw new Error(msg);
+      }
+
+
+      if (data && data.error) {
+        throw new Error(data.error);
+      }
+
       if (data && data.results) {
+        setError(null);
         setResults(data.results);
       } else {
+        setError(null);
         setResults([]);
       }
     } catch (err) {
-      console.error("Search error:", err);
-      setError('Something went wrong while searching. Please try again.');
+      if (activeQueryRef.current !== searchQuery) return;
+      console.error("Search failed:", err);
+      const errorObj = err as Error;
+      setError(errorObj.message || 'Something went wrong while searching. Please try again.');
+      setResults([]);
     } finally {
-      setLoading(false);
+      if (activeQueryRef.current === searchQuery) {
+        setLoading(false);
+      }
     }
   };
 
   useEffect(() => {
     const handler = setTimeout(() => {
-      if (query.trim().length >= 5) {
+      const trimmed = query.trim();
+      if (trimmed.length >= 2) {
         executeSearch(query);
       } else {
+        activeQueryRef.current = '';
         setResults([]);
+        setError(null); // Clear errors when search query is cleared/shortened
       }
     }, 300);
 
@@ -84,6 +124,12 @@ export default function BookSearch({ onSelectBook, hideSubtitle, title, subtitle
       </div>
 
       <div className="book-search__results">
+        {loading && (
+          <div className="book-search__loading">
+            <p>Searching for books... this will just take a moment.</p>
+          </div>
+        )}
+
         {results.length > 0 && results.map((book) => (
           <div key={book.book_id} className="book-search__result-item" onClick={() => onSelectBook(book)}>
             <BookCover coverUrl={book.cover_url} title={book.title} className="book-search__cover" />
@@ -95,7 +141,7 @@ export default function BookSearch({ onSelectBook, hideSubtitle, title, subtitle
           </div>
         ))}
 
-        {!loading && !error && query.trim().length >= 5 && results.length === 0 && (
+        {!loading && !error && query.trim().length >= 2 && results.length === 0 && (
           <div className="book-search__empty">
             <p>No results found for "{query}".</p>
           </div>

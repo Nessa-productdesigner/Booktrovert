@@ -180,7 +180,7 @@
   visibility: visible;
 }
 
-.book-search__empty {
+.book-search__empty, .book-search__loading {
   text-align: center;
   color: var(--figma-ui3-text-tertiary);
   padding: var(--uix-design-system-spacing-sp-6);

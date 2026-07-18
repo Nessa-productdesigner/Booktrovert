@@ -29,13 +29,21 @@ const DIMENSIONS = {
     label: "Structure",
     options: ["Non-linear", "Multiple POVs", "Unreliable narrator", "Epistolary"]
   },
+  pointOfView: {
+    label: "Point of View",
+    options: ["First person", "Second person", "Third person limited", "Third person omniscient"]
+  },
+  theme: {
+    label: "Theme",
+    options: ["Identity", "Found family", "Coming of age", "Justice", "Love and loss", "Survival", "Power and corruption"]
+  },
   tropes: {
     label: "Tropes",
-    options: ["Enemies to lovers", "Found family", "Chosen one", "Redemption arc", "Morally grey protagonist", "Strong Female lead", "Friends to lovers", "Second chance romance"]
+    options: ["Enemies to lovers", "Chosen one", "Redemption arc", "Morally grey protagonist", "Slow burn romance", "Forced proximity", "Second chance romance", "Dark romance", "Literary fiction", "Legal thriller", "Psychological thriller", "Horror"]
   },
   feelingAfterFinishing: {
     label: "Feeling After Finishing",
-    options: ["Satisfied", "Wrecked", "Confused", "Wanting more"]
+    options: ["Satisfied", "Wrecked", "Confused", "Wanting more", "Didn't like it"]
   }
 };
 
@@ -45,6 +53,8 @@ export default function BookTagging({ book, onSaveTags, onCancel, hideBackButton
     emotionalTone: [],
     writingStyle: [],
     structure: [],
+    pointOfView: [],
+    theme: [],
     tropes: [],
     feelingAfterFinishing: []
   });
@@ -68,6 +78,8 @@ export default function BookTagging({ book, onSaveTags, onCancel, hideBackButton
       tags.emotionalTone.length > 0 &&
       tags.writingStyle.length > 0 &&
       tags.structure.length > 0 &&
+      tags.pointOfView.length > 0 &&
+      tags.theme.length > 0 &&
       tags.tropes.length > 0 &&
       tags.feelingAfterFinishing.length > 0
     );

@@ -76,7 +76,7 @@ Deno.serve(async (req) => {
     const recentBooks = readBooks.slice(0, 3);
 
     // Construct Prompt
-    let promptText = `I am a fiction reader looking for 3 new book recommendations.\n\n`;
+    let promptText = `I am a fiction reader looking for 5 new book recommendations.\n\n`;
 
     if (recentBooks.length > 0) {
       promptText += `### RECENTLY READ & LOVED (GIVE DOUBLE WEIGHT TO THESE QUALITIES):\n`;
@@ -115,10 +115,10 @@ Deno.serve(async (req) => {
       promptText += allShelfTitles.join(", ") + "\n";
     }
 
-    promptText += `\nBased on these context tags and signals, recommend EXACTLY 3 fiction books. 
+    promptText += `\nBased on these context tags and signals, recommend EXACTLY 5 fiction books. 
 IMPORTANT RULES:
 1. Return your response ONLY as a strictly valid JSON array. Do not wrap in markdown \`\`\`json or provide any introductory text. Just the array.
-2. The JSON array must contain exactly 3 objects.
+2. The JSON array must contain exactly 5 objects.
 3. Each object MUST have these exact fields:
    - "title" (string)
    - "author" (string)

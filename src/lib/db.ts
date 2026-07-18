@@ -8,6 +8,8 @@ export const EMPTY_TAGS: ContextTags = {
   emotionalTone: [],
   writingStyle: [],
   structure: [],
+  pointOfView: [],
+  theme: [],
   tropes: [],
   feelingAfterFinishing: [],
 };

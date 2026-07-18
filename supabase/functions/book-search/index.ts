@@ -25,24 +25,86 @@ Deno.serve(async (req) => {
       );
     }
 
+    // Helper to sanitize query (strip punctuation that breaks Google's parser, remove extra spacing)
+    const cleanQuery = (q: string): string => {
+      let cleaned = q.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()?"']/g, ' ');
+      return cleaned.replace(/\s+/g, ' ').trim();
+    };
+
+    const cleanedQuery = cleanQuery(query) || query;
+
     const apiKey = Deno.env.get('GOOGLE_BOOKS_API_KEY');
+    console.log(`[Diagnostic] API key present: ${apiKey ? 'YES' : 'NO'}`);
     
     // Construct the external API url
-    const apiUrl = `https://www.googleapis.com/books/v1/volumes?q=${encodeURIComponent(query)}${apiKey ? `&key=${apiKey}` : ''}&maxResults=10`;
+    const apiUrl = `https://www.googleapis.com/books/v1/volumes?q=${encodeURIComponent(cleanedQuery)}${apiKey ? `&key=${apiKey}` : ''}&orderBy=relevance&maxResults=15`;
+    console.log(`[Diagnostic] Fetching URL: ${apiUrl.replace(apiKey || '', '***HIDDEN***')}`);
 
-    const response = await fetch(apiUrl);
+
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), 8000); // 8s hard limit
+
+    let response: Response;
+    try {
+      response = await fetch(apiUrl, { signal: controller.signal });
+      
+      // Fallback: If the API key is invalid/expired (status 400 or 403), retry without it
+      if ((response.status === 400 || response.status === 403) && apiKey) {
+        console.warn(`[Diagnostic] Google API returned auth/credential error ${response.status}. Retrying without API key...`);
+        const fallbackUrl = `https://www.googleapis.com/books/v1/volumes?q=${encodeURIComponent(cleanedQuery)}&orderBy=relevance&maxResults=15`;
+        response = await fetch(fallbackUrl, { signal: controller.signal });
+      }
+    } catch (fetchErr) {
+      clearTimeout(timeout);
+      console.error(`Google Books fetch failed:`, fetchErr);
+      return new Response(
+        JSON.stringify({ error: "Search timed out. It's not your fault, please try again." }),
+        { status: 503, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
+      );
+    }
+    clearTimeout(timeout);
 
     if (!response.ok) {
       console.error(`Google API Error: ${response.status} ${response.statusText}`);
       return new Response(
-        JSON.stringify({ error: 'External API service unavailable' }),
+        JSON.stringify({ error: "Search timed out. It's not your fault, please try again." }),
         { status: 503, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
       );
     }
 
-    const data = await response.json();
+    let data = await response.json();
 
-    // Handle 0 results explicitly
+    // Fallback: If 0 results are returned, try relaxation by splitting into significant words
+    if (!data.items || data.items.length === 0 || data.totalItems === 0) {
+      const words = cleanedQuery.split(' ').filter(w => w.length > 2);
+      if (words.length > 1) {
+        const fallbackQuery = words.join(' ');
+        if (fallbackQuery !== cleanedQuery) {
+          console.log(`[Diagnostic] No results for "${cleanedQuery}". Retrying relaxed fallback: "${fallbackQuery}"`);
+          const fallbackUrl = `https://www.googleapis.com/books/v1/volumes?q=${encodeURIComponent(fallbackQuery)}${apiKey ? `&key=${apiKey}` : ''}&orderBy=relevance&maxResults=15`;
+          
+          const fallbackController = new AbortController();
+          const fallbackTimeout = setTimeout(() => fallbackController.abort(), 4000);
+          
+          try {
+            const fallbackResponse = await fetch(fallbackUrl, { signal: fallbackController.signal });
+            clearTimeout(fallbackTimeout);
+            if (fallbackResponse.ok) {
+              const fallbackData = await fallbackResponse.json();
+              if (fallbackData.items && fallbackData.items.length > 0) {
+                console.log(`[Diagnostic] Fallback search succeeded with ${fallbackData.items.length} results.`);
+                data = fallbackData;
+              }
+            }
+          } catch (fallbackErr) {
+            clearTimeout(fallbackTimeout);
+            console.error('Relaxed fallback search failed:', fallbackErr);
+          }
+        }
+      }
+    }
+
+    // Handle 0 results explicitly after fallback check
     if (!data.items || data.items.length === 0 || data.totalItems === 0) {
       return new Response(
         JSON.stringify({ results: [] }),

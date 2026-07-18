@@ -9,6 +9,7 @@ import BookDetailModal from '../../components/shelf/BookDetailModal';
 import StarRating from '../../components/ui/StarRating';
 import BookCover from '../../components/ui/BookCover';
 import ShareModal from '../../components/share/ShareModal';
+import InstallPrompt from '../../components/ui/InstallPrompt';
 import './ShelfPage.css';
 
 
@@ -100,6 +101,14 @@ export default function ShelfPage() {
     }
     return counts;
   }, [userBooks]);
+
+  const taggedBookCount = useMemo(() =>
+    userBooks.filter(ub =>
+      (ub.shelf === 'read' || ub.shelf === 'did_not_finish') &&
+      ub.context_tags &&
+      Object.values(ub.context_tags).some(arr => arr.length > 0)
+    ).length
+  , [userBooks]);
 
   return (
     <div className="shelf-page">
@@ -273,6 +282,7 @@ export default function ShelfPage() {
           </div>
         </div>
       )}
+      <InstallPrompt taggedBookCount={taggedBookCount} />
     </div>
   );
 }

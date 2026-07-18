@@ -1,0 +1,144 @@
+.install-prompt {
+  position: fixed;
+  bottom: calc(64px + var(--uix-design-system-spacing-sp-4)); /* above bottom nav */
+  left: var(--uix-design-system-spacing-sp-4);
+  right: var(--uix-design-system-spacing-sp-4);
+  max-width: 480px;
+  margin: 0 auto;
+  background: var(--figma-ui3-bg-secondary);
+  border: 1px solid var(--figma-ui3-border);
+  border-radius: var(--uix-design-system-radius-rd-4);
+  padding: var(--uix-design-system-spacing-sp-4);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+  display: flex;
+  align-items: flex-start;
+  gap: var(--uix-design-system-spacing-sp-3);
+  z-index: 900;
+  animation: install-slide-up 0.3s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@keyframes install-slide-up {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.install-prompt__icon {
+  font-size: 1.75rem;
+  flex-shrink: 0;
+  line-height: 1;
+  margin-top: 2px;
+}
+
+.install-prompt__body {
+  flex: 1;
+  min-width: 0;
+}
+
+.install-prompt__title {
+  font-family: var(--typography-title-5-font-family);
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--figma-ui3-text);
+  margin: 0 0 var(--uix-design-system-spacing-sp-1) 0;
+}
+
+.install-prompt__sub {
+  font-family: var(--typography-body-4-font-family);
+  font-size: 0.82rem;
+  color: var(--figma-ui3-text-secondary);
+  margin: 0;
+}
+
+/* Android variant */
+.install-prompt--android {
+  align-items: center;
+}
+
+.install-prompt__actions {
+  display: flex;
+  flex-direction: column;
+  gap: var(--uix-design-system-spacing-sp-2);
+  flex-shrink: 0;
+}
+
+.install-prompt__btn {
+  border: none;
+  border-radius: var(--uix-design-system-radius-rd-2);
+  font-family: var(--typography-body-4-font-family);
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+  padding: var(--uix-design-system-spacing-sp-2) var(--uix-design-system-spacing-sp-4);
+  min-height: 36px;
+  white-space: nowrap;
+  transition: opacity 0.15s ease, background 0.15s ease;
+}
+
+.install-prompt__btn--primary {
+  background: var(--figma-ui3-bg-brand);
+  color: #fff;
+}
+
+.install-prompt__btn--primary:hover {
+  background: var(--figma-ui3-bg-brand-hover);
+}
+
+.install-prompt__btn--ghost {
+  background: transparent;
+  color: var(--figma-ui3-text-secondary);
+  border: 1px solid var(--figma-ui3-border);
+}
+
+.install-prompt__btn--ghost:hover {
+  background: var(--figma-ui3-bg-hover);
+}
+
+/* iOS variant */
+.install-prompt--ios {
+  flex-direction: column;
+  position: relative;
+}
+
+.install-prompt__steps {
+  margin: var(--uix-design-system-spacing-sp-2) 0 0 0;
+  padding-left: var(--uix-design-system-spacing-sp-5);
+  font-family: var(--typography-body-4-font-family);
+  font-size: 0.82rem;
+  color: var(--figma-ui3-text-secondary);
+  line-height: 1.7;
+}
+
+.install-prompt__share-icon {
+  display: inline-block;
+  font-style: normal;
+  background: var(--figma-ui3-bg-tertiary);
+  border-radius: 4px;
+  padding: 0 4px;
+  font-size: 0.75rem;
+}
+
+.install-prompt__close {
+  position: absolute;
+  top: var(--uix-design-system-spacing-sp-3);
+  right: var(--uix-design-system-spacing-sp-3);
+  background: none;
+  border: none;
+  color: var(--figma-ui3-text-secondary);
+  cursor: pointer;
+  font-size: 1rem;
+  line-height: 1;
+  padding: 4px;
+  border-radius: var(--uix-design-system-radius-rd-1);
+  transition: color 0.15s ease, background 0.15s ease;
+}
+
+.install-prompt__close:hover {
+  color: var(--figma-ui3-text);
+  background: var(--figma-ui3-bg-hover);
+}

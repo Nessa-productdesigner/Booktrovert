@@ -15,6 +15,8 @@ export interface ContextTags {
   emotionalTone: string[];
   writingStyle: string[];
   structure: string[];
+  pointOfView: string[];
+  theme: string[];
   tropes: string[];
   feelingAfterFinishing: string[];
 }

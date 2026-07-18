@@ -326,4 +326,45 @@
   }
 }
 
+/* ── Synopsis block ─────────────────────────────────── */
+.recs-page__card-synopsis {
+  margin-top: var(--uix-design-system-spacing-sp-3);
+  padding-top: var(--uix-design-system-spacing-sp-3);
+  border-top: 1px solid var(--figma-ui3-border);
+}
 
+.recs-page__card-synopsis-text {
+  font-family: var(--typography-body-4-font-family);
+  font-size: 0.85rem;
+  color: var(--figma-ui3-text-secondary);
+  line-height: 1.55;
+  margin: 0 0 var(--uix-design-system-spacing-sp-2) 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  transition: all 0.2s ease;
+}
+
+.recs-page__card-synopsis-text--expanded {
+  display: block;
+  -webkit-line-clamp: unset;
+  overflow: visible;
+}
+
+.recs-page__card-synopsis-toggle {
+  background: none;
+  border: none;
+  padding: 0;
+  font-family: var(--typography-body-4-font-family);
+  font-size: 0.8rem;
+  color: var(--figma-ui3-text-brand);
+  cursor: pointer;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  transition: opacity 0.15s ease;
+}
+
+.recs-page__card-synopsis-toggle:hover {
+  opacity: 0.75;
+}
